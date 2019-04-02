@@ -1,0 +1,59 @@
+﻿@model HelpDesk.Models.Usuario
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Usuario</h2>
+
+<h3>Estas Seguro que Deseas Eliminar el Usuario?</h3>
+<div>
+    @*<h4>Usuario</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Usuario
+            @*@Html.DisplayNameFor(model => model.Usuario1)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clave)
+        </dd>
+
+        <dt>
+           Fecha del Ultimo Acceso
+           @* @Html.DisplayNameFor(model => model.FechaUltimoAcceso)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaUltimoAcceso)
+        </dd>
+
+        <dt>
+           Estatus
+           @* @Html.DisplayNameFor(model => model.Estatu.Descripcion)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estatu.Descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver Atras", "Index")
+        </div>
+    }
+</div>
