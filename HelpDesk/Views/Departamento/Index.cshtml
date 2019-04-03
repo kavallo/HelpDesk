@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Departamentos</h2>
+<h2>Mantenimientos de Departamentos</h2>
 
 <p>
     @Html.ActionLink("Crear Nuevo", "Create")
@@ -33,7 +33,7 @@
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.DepartamentoID }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.DepartamentoID }) |
+            
             @Html.ActionLink("Eliminar", "Delete", new { id=item.DepartamentoID })
         </td>
     </tr>
