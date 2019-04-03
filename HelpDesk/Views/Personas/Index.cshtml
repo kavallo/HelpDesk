@@ -5,15 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Personal</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Codigo)
+           Código
+            @*@Html.DisplayNameFor(model => model.Codigo)*@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Nombres)
@@ -22,13 +23,16 @@
             @Html.DisplayNameFor(model => model.Apellidos)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EsTecnico)
+            Es Técnico
+            @*@Html.DisplayNameFor(model => model.EsTecnico)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Departamento.Descripcion)
+            Departamento
+            @*@Html.DisplayNameFor(model => model.Departamento.Descripcion)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estatu.Descripcion)
+            Estatus
+            @*@Html.DisplayNameFor(model => model.Estatu.Descripcion)*@
         </th>
         <th></th>
     </tr>
@@ -54,9 +58,9 @@
             @Html.DisplayFor(modelItem => item.Estatu.Descripcion)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PersonaID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PersonaID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PersonaID })
+            @Html.ActionLink("Editar", "Edit", new { id=item.PersonaID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.PersonaID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.PersonaID })
         </td>
     </tr>
 }
