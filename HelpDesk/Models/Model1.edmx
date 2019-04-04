@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AppHelpDeskModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AppHelpDeskModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Departamentos">
           <Key>
             <PropertyRef Name="DepartamentoID" />
@@ -212,6 +212,9 @@ warning 6002: The table/view 'AppHelpDesk.dbo.SolictudIncidencias' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="spultimoinicio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="AppHelpDeskModelStoreContainer">
           <EntitySet Name="Departamentos" EntityType="Self.Departamentos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estatus" EntityType="Self.Estatus" Schema="dbo" store:Type="Tables" />
@@ -277,8 +280,7 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AppHelpDeskModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -561,6 +563,9 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
             <End Role="TipoIncidencias" EntitySet="TipoIncidencias" />
             <End Role="SolictudIncidencias" EntitySet="SolictudIncidencias" />
           </AssociationSet>
+          <FunctionImport Name="spultimoinicio">
+          <Parameter Name="Usuario" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -641,6 +646,7 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spultimoinicio" FunctionName="AppHelpDeskModel.Store.spultimoinicio" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

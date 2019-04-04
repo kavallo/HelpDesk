@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
 <h2>Departamentos</h2>
 
 <p>
@@ -13,7 +15,7 @@
 <table class="table">
     <tr>
         <th>
-           Departamento
+            Departamento
             @*@Html.DisplayNameFor(model => model.Descripcion)*@
         </th>
         <th>
@@ -23,20 +25,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion, "Descripcion")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estatu.Descripcion, "Descripcion")
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.DepartamentoID }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.DepartamentoID }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.DepartamentoID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion, "Descripcion")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estatu.Descripcion, "Descripcion")
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.DepartamentoID }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.DepartamentoID }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.DepartamentoID })
+            </td>
+        </tr>
+    }
 
 </table>

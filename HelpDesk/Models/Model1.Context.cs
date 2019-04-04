@@ -9,10 +9,10 @@
 
 namespace HelpDesk.Models
 {
-    using System;
     using System.Data.Entity;
+    using System.Data.Entity.Core.Objects;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class AppHelpDeskEntities : DbContext
     {
         public AppHelpDeskEntities()
@@ -32,5 +32,14 @@ namespace HelpDesk.Models
         public DbSet<TipoIncidencia> TipoIncidencias { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<SolictudIncidencia> SolictudIncidencias { get; set; }
+    
+        public virtual int spultimoinicio(string usuario)
+        {
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spultimoinicio", usuarioParameter);
+        }
     }
 }

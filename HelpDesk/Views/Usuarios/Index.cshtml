@@ -4,6 +4,8 @@
     ViewBag.Title = "Index";
 }
 
+
+
 <h2>Mantenimineto de Usuarios</h2>
 
 <p>
@@ -19,36 +21,37 @@
             @Html.DisplayNameFor(model => model.Clave)
         </th>
         <th>
-           Fecha del último Acceso
+            Fecha del último Acceso
             @*@Html.DisplayNameFor(model => model.FechaUltimoAcceso)*@
         </th>
         <th>
-           Descripción
+            Descripción
             @*@Html.DisplayNameFor(model => model.Estatu.Descripcion)*@
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Usuario1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Clave)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaUltimoAcceso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estatu.Descripcion)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.UsuarioID }) |
-            @*@Html.ActionLink("Details", "Details", new { id=item.UsuarioID }) |*@
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.UsuarioID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clave)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaUltimoAcceso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estatu.Descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.UsuarioID }) |
+                @*@Html.ActionLink("Details", "Details", new { id=item.UsuarioID }) |*@
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.UsuarioID })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -17,6 +17,8 @@ namespace HelpDesk.Controllers
         // GET: Departamento
         public ActionResult Index()
         {
+            
+
             var departamentos = db.Departamentos.Include(d => d.Estatu);
             return View(departamentos.ToList());
         }
