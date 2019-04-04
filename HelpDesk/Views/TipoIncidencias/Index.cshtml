@@ -5,20 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Mantenimientos De Indencias</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Crear Nueva Incidencia", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            Descripción
-            @*@Html.DisplayNameFor(model => model.Descripcion)*@
+            @Html.DisplayNameFor(model => model.Descripcion)
         </th>
         <th>
-            Descripción
-            @*@Html.DisplayNameFor(model => model.Estatu.Descripcion)*@
+            @Html.DisplayNameFor(model => model.Estatu.Descripcion)
         </th>
         <th></th>
     </tr>
@@ -32,7 +30,9 @@
             @Html.DisplayFor(modelItem => item.Estatu.Descripcion)
         </td>
         <td>
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.TipoIncidenciaID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.TipoIncidenciaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TipoIncidenciaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TipoIncidenciaID })
         </td>
     </tr>
 }
