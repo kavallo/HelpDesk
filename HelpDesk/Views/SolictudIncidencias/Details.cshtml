@@ -1,0 +1,75 @@
+﻿@model HelpDesk.Models.SolictudIncidencia
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SolictudIncidencia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ComentariosSolicitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComentariosSolicitud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Departamento.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Departamento.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estatu.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estatu.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstatusSolicitud.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstatusSolicitud.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Persona.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persona.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Persona1.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persona1.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoIncidencia.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoIncidencia.Descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
