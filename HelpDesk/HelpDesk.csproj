@@ -172,6 +172,9 @@
     <Compile Include="Models\SolictudIncidencia.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TipoIncidencia.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

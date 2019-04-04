@@ -12,14 +12,18 @@ namespace HelpDesk.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class TipoIncidencia
     {
-        public int UsuarioID { get; set; }
-        public string Usuario1 { get; set; }
-        public string Clave { get; set; }
-        public Nullable<System.DateTime> FechaUltimoAcceso { get; set; }
+        public TipoIncidencia()
+        {
+            this.SolictudIncidencias = new HashSet<SolictudIncidencia>();
+        }
+    
+        public int TipoIncidenciaID { get; set; }
+        public string Descripcion { get; set; }
         public int EstatusID { get; set; }
     
         public virtual Estatu Estatu { get; set; }
+        public virtual ICollection<SolictudIncidencia> SolictudIncidencias { get; set; }
     }
 }
