@@ -137,6 +137,7 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TipoIncidenciasController.cs" />
     <Compile Include="Controllers\SolictudIncidenciasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\PersonasController.cs" />
