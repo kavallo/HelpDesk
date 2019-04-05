@@ -302,6 +302,11 @@
     <Content Include="Views\SolictudIncidencias\Details.cshtml" />
     <Content Include="Views\SolictudIncidencias\Edit.cshtml" />
     <Content Include="Views\SolictudIncidencias\Index.cshtml" />
+    <Content Include="Views\TipoIncidencias\Create.cshtml" />
+    <Content Include="Views\TipoIncidencias\Delete.cshtml" />
+    <Content Include="Views\TipoIncidencias\Details.cshtml" />
+    <Content Include="Views\TipoIncidencias\Edit.cshtml" />
+    <Content Include="Views\TipoIncidencias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
