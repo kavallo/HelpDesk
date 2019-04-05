@@ -10,116 +10,112 @@ using HelpDesk.Models;
 
 namespace HelpDesk.Controllers
 {
-    public class DepartamentoController : Controller
+    public class TipoIncidenciasController : Controller
     {
         private AppHelpDeskEntities db = new AppHelpDeskEntities();
 
-        // GET: Departamento
+        // GET: TipoIncidencias
         public ActionResult Index()
         {
-
-
-            
-
-            var departamentos = db.Departamentos.Include(d => d.Estatu);
-            return View(departamentos.ToList());
+            var tipoIncidencias = db.TipoIncidencias.Include(t => t.Estatu);
+            return View(tipoIncidencias.ToList());
         }
 
-        // GET: Departamento/Details/5
+        // GET: TipoIncidencias/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Departamento departamento = db.Departamentos.Find(id);
-            if (departamento == null)
+            TipoIncidencia tipoIncidencia = db.TipoIncidencias.Find(id);
+            if (tipoIncidencia == null)
             {
                 return HttpNotFound();
             }
-            return View(departamento);
+            return View(tipoIncidencia);
         }
 
-        // GET: Departamento/Create
+        // GET: TipoIncidencias/Create
         public ActionResult Create()
         {
             ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion");
             return View();
         }
 
-        // POST: Departamento/Create
+        // POST: TipoIncidencias/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DepartamentoID,Descripcion,EstatusID")] Departamento departamento)
+        public ActionResult Create([Bind(Include = "TipoIncidenciaID,Descripcion,EstatusID")] TipoIncidencia tipoIncidencia)
         {
             if (ModelState.IsValid)
             {
-                db.Departamentos.Add(departamento);
+                db.TipoIncidencias.Add(tipoIncidencia);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion", departamento.EstatusID);
-            return View(departamento);
+            ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion", tipoIncidencia.EstatusID);
+            return View(tipoIncidencia);
         }
 
-        // GET: Departamento/Edit/5
+        // GET: TipoIncidencias/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Departamento departamento = db.Departamentos.Find(id);
-            if (departamento == null)
+            TipoIncidencia tipoIncidencia = db.TipoIncidencias.Find(id);
+            if (tipoIncidencia == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion", departamento.EstatusID);
-            return View(departamento);
+            ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion", tipoIncidencia.EstatusID);
+            return View(tipoIncidencia);
         }
 
-        // POST: Departamento/Edit/5
+        // POST: TipoIncidencias/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DepartamentoID,Descripcion,EstatusID")] Departamento departamento)
+        public ActionResult Edit([Bind(Include = "TipoIncidenciaID,Descripcion,EstatusID")] TipoIncidencia tipoIncidencia)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(departamento).State = EntityState.Modified;
+                db.Entry(tipoIncidencia).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion", departamento.EstatusID);
-            return View(departamento);
+            ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion", tipoIncidencia.EstatusID);
+            return View(tipoIncidencia);
         }
 
-        // GET: Departamento/Delete/5
+        // GET: TipoIncidencias/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Departamento departamento = db.Departamentos.Find(id);
-            if (departamento == null)
+            TipoIncidencia tipoIncidencia = db.TipoIncidencias.Find(id);
+            if (tipoIncidencia == null)
             {
                 return HttpNotFound();
             }
-            return View(departamento);
+            return View(tipoIncidencia);
         }
 
-        // POST: Departamento/Delete/5
+        // POST: TipoIncidencias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Departamento departamento = db.Departamentos.Find(id);
-            db.Departamentos.Remove(departamento);
+            TipoIncidencia tipoIncidencia = db.TipoIncidencias.Find(id);
+            db.TipoIncidencias.Remove(tipoIncidencia);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
