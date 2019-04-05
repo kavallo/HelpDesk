@@ -11,11 +11,14 @@ namespace HelpDesk.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Usuario
     {
         public int UsuarioID { get; set; }
         public string Usuario1 { get; set; }
+        [DataType(DataType.Password)]
         public string Clave { get; set; }
         public Nullable<System.DateTime> FechaUltimoAcceso { get; set; }
         public int EstatusID { get; set; }
