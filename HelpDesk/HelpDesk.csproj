@@ -137,8 +137,8 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TipoIncidenciasController.cs" />
     <Compile Include="Controllers\SolictudIncidenciasController.cs" />
+    <Compile Include="Controllers\TipoIncidenciasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\PersonasController.cs" />
     <Compile Include="Global.asax.cs">
@@ -298,16 +298,16 @@
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
-    <Content Include="Views\SolictudIncidencias\Create.cshtml" />
-    <Content Include="Views\SolictudIncidencias\Delete.cshtml" />
-    <Content Include="Views\SolictudIncidencias\Details.cshtml" />
-    <Content Include="Views\SolictudIncidencias\Edit.cshtml" />
-    <Content Include="Views\SolictudIncidencias\Index.cshtml" />
     <Content Include="Views\TipoIncidencias\Create.cshtml" />
     <Content Include="Views\TipoIncidencias\Delete.cshtml" />
     <Content Include="Views\TipoIncidencias\Details.cshtml" />
     <Content Include="Views\TipoIncidencias\Edit.cshtml" />
     <Content Include="Views\TipoIncidencias\Index.cshtml" />
+    <Content Include="Views\SolictudIncidencias\Create.cshtml" />
+    <Content Include="Views\SolictudIncidencias\Delete.cshtml" />
+    <Content Include="Views\SolictudIncidencias\Details.cshtml" />
+    <Content Include="Views\SolictudIncidencias\Edit.cshtml" />
+    <Content Include="Views\SolictudIncidencias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

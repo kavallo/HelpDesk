@@ -39,18 +39,9 @@
           <Property Name="EsTecnico" Type="bit" Nullable="false" />
           <Property Name="EstatusID" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'AppHelpDesk.dbo.SolictudIncidencias' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SolictudIncidencias">
           <Key>
             <PropertyRef Name="SolicitudIncidenciaID" />
-            <PropertyRef Name="FechaIncidencia" />
-            <PropertyRef Name="DepartamentoID_Solicitud" />
-            <PropertyRef Name="PersonaID_Solicitud" />
-            <PropertyRef Name="TipoIncidenciaID" />
-            <PropertyRef Name="PersonaID_Tecnico" />
-            <PropertyRef Name="EstatusSolicitudID" />
-            <PropertyRef Name="EstatusID" />
           </Key>
           <Property Name="SolicitudIncidenciaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FechaIncidencia" Type="datetime" Nullable="false" />
@@ -220,21 +211,9 @@ warning 6002: The table/view 'AppHelpDesk.dbo.SolictudIncidencias' does not have
           <EntitySet Name="Estatus" EntityType="Self.Estatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EstatusSolicitud" EntityType="Self.EstatusSolicitud" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SolictudIncidencias" EntityType="Self.SolictudIncidencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoIncidencias" EntityType="Self.TipoIncidencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SolictudIncidencias" EntityType="Self.SolictudIncidencias" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[SolictudIncidencias].[SolicitudIncidenciaID] AS [SolicitudIncidenciaID], 
-[SolictudIncidencias].[FechaIncidencia] AS [FechaIncidencia], 
-[SolictudIncidencias].[DepartamentoID_Solicitud] AS [DepartamentoID_Solicitud], 
-[SolictudIncidencias].[PersonaID_Solicitud] AS [PersonaID_Solicitud], 
-[SolictudIncidencias].[TipoIncidenciaID] AS [TipoIncidenciaID], 
-[SolictudIncidencias].[PersonaID_Tecnico] AS [PersonaID_Tecnico], 
-[SolictudIncidencias].[ComentariosSolicitud] AS [ComentariosSolicitud], 
-[SolictudIncidencias].[EstatusSolicitudID] AS [EstatusSolicitudID], 
-[SolictudIncidencias].[EstatusID] AS [EstatusID]
-FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Departamentos_Estatus" Association="Self.FK_Departamentos_Estatus">
             <End Role="Estatus" EntitySet="Estatus" />
             <End Role="Departamentos" EntitySet="Departamentos" />
@@ -293,7 +272,7 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
           <Property Name="EstatusID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Estatu" Relationship="Self.FK_Departamentos_Estatus" FromRole="Departamentos" ToRole="Estatus" />
           <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_Departamentos" FromRole="Departamentos" ToRole="Persona" />
-          <NavigationProperty Name="SolictudIncidencias" Relationship="Self.FK_SolictudIncidencias_Departamentos" FromRole="Departamentos" ToRole="SolictudIncidencias" />
+          <NavigationProperty Name="SolictudIncidencias" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_Departamentos" FromRole="Departamento" ToRole="SolictudIncidencia" />
         </EntityType>
         <EntityType Name="Estatu">
           <Key>
@@ -303,9 +282,9 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Departamentos" Relationship="Self.FK_Departamentos_Estatus" FromRole="Estatus" ToRole="Departamentos" />
           <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_Estatus" FromRole="Estatus" ToRole="Persona" />
-          <NavigationProperty Name="SolictudIncidencias" Relationship="Self.FK_SolictudIncidencias_Estatus" FromRole="Estatus" ToRole="SolictudIncidencias" />
           <NavigationProperty Name="TipoIncidencias" Relationship="Self.FK_TipoIncidencias_Estatus" FromRole="Estatus" ToRole="TipoIncidencias" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Estatus" FromRole="Estatus" ToRole="Usuarios" />
+          <NavigationProperty Name="SolictudIncidencias" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_Estatus" FromRole="Estatu" ToRole="SolictudIncidencia" />
         </EntityType>
         <EntityType Name="EstatusSolicitud">
           <Key>
@@ -313,7 +292,7 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
           </Key>
           <Property Name="EstatusSolicitudID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="SolictudIncidencias" Relationship="Self.FK_SolictudIncidencias_EstatusSolicitud" FromRole="EstatusSolicitud" ToRole="SolictudIncidencias" />
+          <NavigationProperty Name="SolictudIncidencias" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_EstatusSolicitud" FromRole="EstatusSolicitud" ToRole="SolictudIncidencia" />
         </EntityType>
         <EntityType Name="Persona">
           <Key>
@@ -328,8 +307,8 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
           <Property Name="EstatusID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Departamento" Relationship="Self.FK_Persona_Departamentos" FromRole="Persona" ToRole="Departamentos" />
           <NavigationProperty Name="Estatu" Relationship="Self.FK_Persona_Estatus" FromRole="Persona" ToRole="Estatus" />
-          <NavigationProperty Name="SolictudIncidencias" Relationship="Self.FK_SolictudIncidencias_Persona" FromRole="Persona" ToRole="SolictudIncidencias" />
-          <NavigationProperty Name="SolictudIncidencias1" Relationship="Self.FK_SolictudIncidencias_Persona1" FromRole="Persona" ToRole="SolictudIncidencias" />
+          <NavigationProperty Name="SolictudIncidencias" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_Persona" FromRole="Persona" ToRole="SolictudIncidencia" />
+          <NavigationProperty Name="SolictudIncidencias1" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_Persona1" FromRole="Persona" ToRole="SolictudIncidencia" />
         </EntityType>
         <EntityType Name="TipoIncidencia">
           <Key>
@@ -339,7 +318,7 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EstatusID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Estatu" Relationship="Self.FK_TipoIncidencias_Estatus" FromRole="TipoIncidencias" ToRole="Estatus" />
-          <NavigationProperty Name="SolictudIncidencias" Relationship="Self.FK_SolictudIncidencias_TipoIncidencias" FromRole="TipoIncidencias" ToRole="SolictudIncidencias" />
+          <NavigationProperty Name="SolictudIncidencias" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_TipoIncidencias" FromRole="TipoIncidencia" ToRole="SolictudIncidencia" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -351,33 +330,6 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
           <Property Name="FechaUltimoAcceso" Type="DateTime" Precision="3" />
           <Property Name="EstatusID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Estatu" Relationship="Self.FK_Usuarios_Estatus" FromRole="Usuarios" ToRole="Estatus" />
-        </EntityType>
-        <EntityType Name="SolictudIncidencia">
-          <Key>
-            <PropertyRef Name="SolicitudIncidenciaID" />
-            <PropertyRef Name="FechaIncidencia" />
-            <PropertyRef Name="DepartamentoID_Solicitud" />
-            <PropertyRef Name="PersonaID_Solicitud" />
-            <PropertyRef Name="TipoIncidenciaID" />
-            <PropertyRef Name="PersonaID_Tecnico" />
-            <PropertyRef Name="EstatusSolicitudID" />
-            <PropertyRef Name="EstatusID" />
-          </Key>
-          <Property Name="SolicitudIncidenciaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FechaIncidencia" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DepartamentoID_Solicitud" Type="Int32" Nullable="false" />
-          <Property Name="PersonaID_Solicitud" Type="Int32" Nullable="false" />
-          <Property Name="TipoIncidenciaID" Type="Int32" Nullable="false" />
-          <Property Name="PersonaID_Tecnico" Type="Int32" Nullable="false" />
-          <Property Name="ComentariosSolicitud" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
-          <Property Name="EstatusSolicitudID" Type="Int32" Nullable="false" />
-          <Property Name="EstatusID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Departamento" Relationship="Self.FK_SolictudIncidencias_Departamentos" FromRole="SolictudIncidencias" ToRole="Departamentos" />
-          <NavigationProperty Name="Estatu" Relationship="Self.FK_SolictudIncidencias_Estatus" FromRole="SolictudIncidencias" ToRole="Estatus" />
-          <NavigationProperty Name="EstatusSolicitud" Relationship="Self.FK_SolictudIncidencias_EstatusSolicitud" FromRole="SolictudIncidencias" ToRole="EstatusSolicitud" />
-          <NavigationProperty Name="Persona" Relationship="Self.FK_SolictudIncidencias_Persona" FromRole="SolictudIncidencias" ToRole="Persona" />
-          <NavigationProperty Name="Persona1" Relationship="Self.FK_SolictudIncidencias_Persona1" FromRole="SolictudIncidencias" ToRole="Persona" />
-          <NavigationProperty Name="TipoIncidencia" Relationship="Self.FK_SolictudIncidencias_TipoIncidencias" FromRole="SolictudIncidencias" ToRole="TipoIncidencias" />
         </EntityType>
         <Association Name="FK_Departamentos_Estatus">
           <End Role="Estatus" Type="Self.Estatu" Multiplicity="1" />
@@ -403,18 +355,6 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SolictudIncidencias_Departamentos">
-          <End Role="Departamentos" Type="Self.Departamento" Multiplicity="1" />
-          <End Role="SolictudIncidencias" Type="Self.SolictudIncidencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Departamentos">
-              <PropertyRef Name="DepartamentoID" />
-            </Principal>
-            <Dependent Role="SolictudIncidencias">
-              <PropertyRef Name="DepartamentoID_Solicitud" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Persona_Estatus">
           <End Role="Estatus" Type="Self.Estatu" Multiplicity="1" />
           <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
@@ -423,18 +363,6 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
               <PropertyRef Name="EstatusID" />
             </Principal>
             <Dependent Role="Persona">
-              <PropertyRef Name="EstatusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SolictudIncidencias_Estatus">
-          <End Role="Estatus" Type="Self.Estatu" Multiplicity="1" />
-          <End Role="SolictudIncidencias" Type="Self.SolictudIncidencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estatus">
-              <PropertyRef Name="EstatusID" />
-            </Principal>
-            <Dependent Role="SolictudIncidencias">
               <PropertyRef Name="EstatusID" />
             </Dependent>
           </ReferentialConstraint>
@@ -463,54 +391,6 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SolictudIncidencias_EstatusSolicitud">
-          <End Role="EstatusSolicitud" Type="Self.EstatusSolicitud" Multiplicity="1" />
-          <End Role="SolictudIncidencias" Type="Self.SolictudIncidencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EstatusSolicitud">
-              <PropertyRef Name="EstatusSolicitudID" />
-            </Principal>
-            <Dependent Role="SolictudIncidencias">
-              <PropertyRef Name="EstatusSolicitudID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SolictudIncidencias_Persona">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
-          <End Role="SolictudIncidencias" Type="Self.SolictudIncidencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persona">
-              <PropertyRef Name="PersonaID" />
-            </Principal>
-            <Dependent Role="SolictudIncidencias">
-              <PropertyRef Name="PersonaID_Solicitud" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SolictudIncidencias_Persona1">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
-          <End Role="SolictudIncidencias" Type="Self.SolictudIncidencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persona">
-              <PropertyRef Name="PersonaID" />
-            </Principal>
-            <Dependent Role="SolictudIncidencias">
-              <PropertyRef Name="PersonaID_Tecnico" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SolictudIncidencias_TipoIncidencias">
-          <End Role="TipoIncidencias" Type="Self.TipoIncidencia" Multiplicity="1" />
-          <End Role="SolictudIncidencias" Type="Self.SolictudIncidencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoIncidencias">
-              <PropertyRef Name="TipoIncidenciaID" />
-            </Principal>
-            <Dependent Role="SolictudIncidencias">
-              <PropertyRef Name="TipoIncidenciaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="AppHelpDeskEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Departamentos" EntityType="Self.Departamento" />
           <EntitySet Name="Estatus" EntityType="Self.Estatu" />
@@ -518,7 +398,6 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
           <EntitySet Name="Personas" EntityType="Self.Persona" />
           <EntitySet Name="TipoIncidencias" EntityType="Self.TipoIncidencia" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
-          <EntitySet Name="SolictudIncidencias" EntityType="Self.SolictudIncidencia" />
           <AssociationSet Name="FK_Departamentos_Estatus" Association="Self.FK_Departamentos_Estatus">
             <End Role="Estatus" EntitySet="Estatus" />
             <End Role="Departamentos" EntitySet="Departamentos" />
@@ -527,17 +406,9 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
             <End Role="Departamentos" EntitySet="Departamentos" />
             <End Role="Persona" EntitySet="Personas" />
           </AssociationSet>
-          <AssociationSet Name="FK_SolictudIncidencias_Departamentos" Association="Self.FK_SolictudIncidencias_Departamentos">
-            <End Role="Departamentos" EntitySet="Departamentos" />
-            <End Role="SolictudIncidencias" EntitySet="SolictudIncidencias" />
-          </AssociationSet>
           <AssociationSet Name="FK_Persona_Estatus" Association="Self.FK_Persona_Estatus">
             <End Role="Estatus" EntitySet="Estatus" />
             <End Role="Persona" EntitySet="Personas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SolictudIncidencias_Estatus" Association="Self.FK_SolictudIncidencias_Estatus">
-            <End Role="Estatus" EntitySet="Estatus" />
-            <End Role="SolictudIncidencias" EntitySet="SolictudIncidencias" />
           </AssociationSet>
           <AssociationSet Name="FK_TipoIncidencias_Estatus" Association="Self.FK_TipoIncidencias_Estatus">
             <End Role="Estatus" EntitySet="Estatus" />
@@ -547,26 +418,127 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
             <End Role="Estatus" EntitySet="Estatus" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK_SolictudIncidencias_EstatusSolicitud" Association="Self.FK_SolictudIncidencias_EstatusSolicitud">
-            <End Role="EstatusSolicitud" EntitySet="EstatusSolicituds" />
-            <End Role="SolictudIncidencias" EntitySet="SolictudIncidencias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SolictudIncidencias_Persona" Association="Self.FK_SolictudIncidencias_Persona">
-            <End Role="Persona" EntitySet="Personas" />
-            <End Role="SolictudIncidencias" EntitySet="SolictudIncidencias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SolictudIncidencias_Persona1" Association="Self.FK_SolictudIncidencias_Persona1">
-            <End Role="Persona" EntitySet="Personas" />
-            <End Role="SolictudIncidencias" EntitySet="SolictudIncidencias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SolictudIncidencias_TipoIncidencias" Association="Self.FK_SolictudIncidencias_TipoIncidencias">
-            <End Role="TipoIncidencias" EntitySet="TipoIncidencias" />
-            <End Role="SolictudIncidencias" EntitySet="SolictudIncidencias" />
-          </AssociationSet>
           <FunctionImport Name="spultimoinicio">
           <Parameter Name="Usuario" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="SolictudIncidencias" EntityType="AppHelpDeskModel.SolictudIncidencia" />
+          <AssociationSet Name="FK_SolictudIncidencias_Departamentos" Association="AppHelpDeskModel.FK_SolictudIncidencias_Departamentos">
+            <End Role="Departamento" EntitySet="Departamentos" />
+            <End Role="SolictudIncidencia" EntitySet="SolictudIncidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolictudIncidencias_Estatus" Association="AppHelpDeskModel.FK_SolictudIncidencias_Estatus">
+            <End Role="Estatu" EntitySet="Estatus" />
+            <End Role="SolictudIncidencia" EntitySet="SolictudIncidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolictudIncidencias_EstatusSolicitud" Association="AppHelpDeskModel.FK_SolictudIncidencias_EstatusSolicitud">
+            <End Role="EstatusSolicitud" EntitySet="EstatusSolicituds" />
+            <End Role="SolictudIncidencia" EntitySet="SolictudIncidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolictudIncidencias_Persona" Association="AppHelpDeskModel.FK_SolictudIncidencias_Persona">
+            <End Role="Persona" EntitySet="Personas" />
+            <End Role="SolictudIncidencia" EntitySet="SolictudIncidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolictudIncidencias_Persona1" Association="AppHelpDeskModel.FK_SolictudIncidencias_Persona1">
+            <End Role="Persona" EntitySet="Personas" />
+            <End Role="SolictudIncidencia" EntitySet="SolictudIncidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SolictudIncidencias_TipoIncidencias" Association="AppHelpDeskModel.FK_SolictudIncidencias_TipoIncidencias">
+            <End Role="TipoIncidencia" EntitySet="TipoIncidencias" />
+            <End Role="SolictudIncidencia" EntitySet="SolictudIncidencias" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="SolictudIncidencia">
+          <Key>
+            <PropertyRef Name="SolicitudIncidenciaID" />
+          </Key>
+          <Property Name="SolicitudIncidenciaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaIncidencia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DepartamentoID_Solicitud" Type="Int32" Nullable="false" />
+          <Property Name="PersonaID_Solicitud" Type="Int32" Nullable="false" />
+          <Property Name="TipoIncidenciaID" Type="Int32" Nullable="false" />
+          <Property Name="PersonaID_Tecnico" Type="Int32" Nullable="false" />
+          <Property Name="ComentariosSolicitud" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="EstatusSolicitudID" Type="Int32" Nullable="false" />
+          <Property Name="EstatusID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Departamento" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_Departamentos" FromRole="SolictudIncidencia" ToRole="Departamento" />
+          <NavigationProperty Name="Estatu" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_Estatus" FromRole="SolictudIncidencia" ToRole="Estatu" />
+          <NavigationProperty Name="EstatusSolicitud" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_EstatusSolicitud" FromRole="SolictudIncidencia" ToRole="EstatusSolicitud" />
+          <NavigationProperty Name="Persona" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_Persona" FromRole="SolictudIncidencia" ToRole="Persona" />
+          <NavigationProperty Name="Persona1" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_Persona1" FromRole="SolictudIncidencia" ToRole="Persona" />
+          <NavigationProperty Name="TipoIncidencia" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_TipoIncidencias" FromRole="SolictudIncidencia" ToRole="TipoIncidencia" />
+        </EntityType>
+        <Association Name="FK_SolictudIncidencias_Departamentos">
+          <End Type="AppHelpDeskModel.Departamento" Role="Departamento" Multiplicity="1" />
+          <End Type="AppHelpDeskModel.SolictudIncidencia" Role="SolictudIncidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="DepartamentoID" />
+            </Principal>
+            <Dependent Role="SolictudIncidencia">
+              <PropertyRef Name="DepartamentoID_Solicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SolictudIncidencias_Estatus">
+          <End Type="AppHelpDeskModel.Estatu" Role="Estatu" Multiplicity="1" />
+          <End Type="AppHelpDeskModel.SolictudIncidencia" Role="SolictudIncidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estatu">
+              <PropertyRef Name="EstatusID" />
+            </Principal>
+            <Dependent Role="SolictudIncidencia">
+              <PropertyRef Name="EstatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SolictudIncidencias_EstatusSolicitud">
+          <End Type="AppHelpDeskModel.EstatusSolicitud" Role="EstatusSolicitud" Multiplicity="1" />
+          <End Type="AppHelpDeskModel.SolictudIncidencia" Role="SolictudIncidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstatusSolicitud">
+              <PropertyRef Name="EstatusSolicitudID" />
+            </Principal>
+            <Dependent Role="SolictudIncidencia">
+              <PropertyRef Name="EstatusSolicitudID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SolictudIncidencias_Persona">
+          <End Type="AppHelpDeskModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="AppHelpDeskModel.SolictudIncidencia" Role="SolictudIncidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PersonaID" />
+            </Principal>
+            <Dependent Role="SolictudIncidencia">
+              <PropertyRef Name="PersonaID_Solicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SolictudIncidencias_Persona1">
+          <End Type="AppHelpDeskModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="AppHelpDeskModel.SolictudIncidencia" Role="SolictudIncidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PersonaID" />
+            </Principal>
+            <Dependent Role="SolictudIncidencia">
+              <PropertyRef Name="PersonaID_Tecnico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SolictudIncidencias_TipoIncidencias">
+          <End Type="AppHelpDeskModel.TipoIncidencia" Role="TipoIncidencia" Multiplicity="1" />
+          <End Type="AppHelpDeskModel.SolictudIncidencia" Role="SolictudIncidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoIncidencia">
+              <PropertyRef Name="TipoIncidenciaID" />
+            </Principal>
+            <Dependent Role="SolictudIncidencia">
+              <PropertyRef Name="TipoIncidenciaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -631,22 +603,22 @@ FROM [dbo].[SolictudIncidencias] AS [SolictudIncidencias]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spultimoinicio" FunctionName="AppHelpDeskModel.Store.spultimoinicio" />
           <EntitySetMapping Name="SolictudIncidencias">
             <EntityTypeMapping TypeName="AppHelpDeskModel.SolictudIncidencia">
               <MappingFragment StoreEntitySet="SolictudIncidencias">
-                <ScalarProperty Name="SolicitudIncidenciaID" ColumnName="SolicitudIncidenciaID" />
-                <ScalarProperty Name="FechaIncidencia" ColumnName="FechaIncidencia" />
-                <ScalarProperty Name="DepartamentoID_Solicitud" ColumnName="DepartamentoID_Solicitud" />
-                <ScalarProperty Name="PersonaID_Solicitud" ColumnName="PersonaID_Solicitud" />
-                <ScalarProperty Name="TipoIncidenciaID" ColumnName="TipoIncidenciaID" />
-                <ScalarProperty Name="PersonaID_Tecnico" ColumnName="PersonaID_Tecnico" />
-                <ScalarProperty Name="ComentariosSolicitud" ColumnName="ComentariosSolicitud" />
-                <ScalarProperty Name="EstatusSolicitudID" ColumnName="EstatusSolicitudID" />
                 <ScalarProperty Name="EstatusID" ColumnName="EstatusID" />
+                <ScalarProperty Name="EstatusSolicitudID" ColumnName="EstatusSolicitudID" />
+                <ScalarProperty Name="ComentariosSolicitud" ColumnName="ComentariosSolicitud" />
+                <ScalarProperty Name="PersonaID_Tecnico" ColumnName="PersonaID_Tecnico" />
+                <ScalarProperty Name="TipoIncidenciaID" ColumnName="TipoIncidenciaID" />
+                <ScalarProperty Name="PersonaID_Solicitud" ColumnName="PersonaID_Solicitud" />
+                <ScalarProperty Name="DepartamentoID_Solicitud" ColumnName="DepartamentoID_Solicitud" />
+                <ScalarProperty Name="FechaIncidencia" ColumnName="FechaIncidencia" />
+                <ScalarProperty Name="SolicitudIncidenciaID" ColumnName="SolicitudIncidenciaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="spultimoinicio" FunctionName="AppHelpDeskModel.Store.spultimoinicio" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
