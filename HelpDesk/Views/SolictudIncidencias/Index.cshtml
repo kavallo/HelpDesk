@@ -5,46 +5,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Registro de Incidencias</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Crear Nueva Incidencia", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            Comentarios
-           @* @Html.DisplayNameFor(model => model.ComentariosSolicitud)*@
+            @Html.DisplayNameFor(model => model.FechaIncidencia)
         </th>
         <th>
-            Departamento
-            @*@Html.DisplayNameFor(model => model.Departamento.Descripcion)*@
+            @Html.DisplayNameFor(model => model.ComentariosSolicitud)
         </th>
         <th>
-            Estatus
-            @*@Html.DisplayNameFor(model => model.Estatu.Descripcion)*@
+            @Html.DisplayNameFor(model => model.Departamento.Descripcion)
         </th>
         <th>
-            Estatus de Solicitud
-           @* @Html.DisplayNameFor(model => model.EstatusSolicitud.Descripcion)*@
+            @Html.DisplayNameFor(model => model.Estatu.Descripcion)
         </th>
         <th>
-           Código del Solicitante
-            @*@Html.DisplayNameFor(model => model.Persona.Codigo)*@
+            @Html.DisplayNameFor(model => model.EstatusSolicitud.Descripcion)
         </th>
         <th>
-            Codigo del Soporte Asignado
-           @* @Html.DisplayNameFor(model => model.Persona1.Codigo)*@
+            @Html.DisplayNameFor(model => model.Persona.Codigo)
         </th>
         <th>
-            Tipo de Incidencia
-           @* @Html.DisplayNameFor(model => model.TipoIncidencia.Descripcion)*@
+            @Html.DisplayNameFor(model => model.Persona1.Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoIncidencia.Descripcion)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaIncidencia)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.ComentariosSolicitud)
         </td>
@@ -67,9 +66,9 @@
             @Html.DisplayFor(modelItem => item.TipoIncidencia.Descripcion)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
-            @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id=item.SolicitudIncidenciaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SolicitudIncidenciaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SolicitudIncidenciaID })
         </td>
     </tr>
 }

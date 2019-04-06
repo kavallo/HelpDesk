@@ -14,6 +14,7 @@ namespace HelpDesk.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
+
     public partial class Usuario
     {
         public int UsuarioID { get; set; }

@@ -18,9 +18,9 @@ namespace HelpDesk.Models
         {
             this.Departamentos = new HashSet<Departamento>();
             this.Personas = new HashSet<Persona>();
-            this.SolictudIncidencias = new HashSet<SolictudIncidencia>();
             this.TipoIncidencias = new HashSet<TipoIncidencia>();
             this.Usuarios = new HashSet<Usuario>();
+            this.SolictudIncidencias = new HashSet<SolictudIncidencia>();
         }
     
         public int EstatusID { get; set; }
@@ -28,8 +28,8 @@ namespace HelpDesk.Models
     
         public virtual ICollection<Departamento> Departamentos { get; set; }
         public virtual ICollection<Persona> Personas { get; set; }
-        public virtual ICollection<SolictudIncidencia> SolictudIncidencias { get; set; }
         public virtual ICollection<TipoIncidencia> TipoIncidencias { get; set; }
         public virtual ICollection<Usuario> Usuarios { get; set; }
+        public virtual ICollection<SolictudIncidencia> SolictudIncidencias { get; set; }
     }
 }

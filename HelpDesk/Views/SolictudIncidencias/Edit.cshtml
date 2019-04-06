@@ -18,15 +18,45 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.SolicitudIncidenciaID)
 
-        @Html.HiddenFor(model => model.FechaIncidencia)
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaIncidencia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FechaIncidencia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FechaIncidencia, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-        @Html.HiddenFor(model => model.DepartamentoID_Solicitud)
+        <div class="form-group">
+            @Html.LabelFor(model => model.DepartamentoID_Solicitud, "DepartamentoID_Solicitud", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DepartamentoID_Solicitud", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DepartamentoID_Solicitud, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-        @Html.HiddenFor(model => model.PersonaID_Solicitud)
+        <div class="form-group">
+            @Html.LabelFor(model => model.PersonaID_Solicitud, "PersonaID_Solicitud", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("PersonaID_Solicitud", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PersonaID_Solicitud, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-        @Html.HiddenFor(model => model.TipoIncidenciaID)
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoIncidenciaID, "TipoIncidenciaID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TipoIncidenciaID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TipoIncidenciaID, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-        @Html.HiddenFor(model => model.PersonaID_Tecnico)
+        <div class="form-group">
+            @Html.LabelFor(model => model.PersonaID_Tecnico, "PersonaID_Tecnico", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("PersonaID_Tecnico", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PersonaID_Tecnico, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ComentariosSolicitud, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -36,9 +66,21 @@
             </div>
         </div>
 
-        @Html.HiddenFor(model => model.EstatusSolicitudID)
+        <div class="form-group">
+            @Html.LabelFor(model => model.EstatusSolicitudID, "EstatusSolicitudID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EstatusSolicitudID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EstatusSolicitudID, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-        @Html.HiddenFor(model => model.EstatusID)
+        <div class="form-group">
+            @Html.LabelFor(model => model.EstatusID, "EstatusID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EstatusID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EstatusID, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
