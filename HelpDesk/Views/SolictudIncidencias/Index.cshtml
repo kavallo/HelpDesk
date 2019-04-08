@@ -5,36 +5,42 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>MANTENIMINETO DE INCIDENCIAS</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nueva Incidencia", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FechaIncidencia)
+            Tipo Incidencia
+            @* @Html.DisplayNameFor(model => model.FechaIncidencia)*@
+        </th>
+        @*<th>
+          Detalles
+           @* @Html.DisplayNameFor(model => model.ComentariosSolicitud)*@
+     
+        <th>
+          Solicitante
+           @* @Html.DisplayNameFor(model => model.Departamento.Descripcion)*@
+        </th>
+     
+        <th>
+           Departamento Solicitud
+         @*   @Html.DisplayNameFor(model => model.EstatusSolicitud.Descripcion)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ComentariosSolicitud)
+            Estatus Solicitud
+            @* @Html.DisplayNameFor(model => model.Persona.Codigo)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Departamento.Descripcion)
+            Asignado
+            @*@Html.DisplayNameFor(model => model.Persona1.Codigo)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estatu.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EstatusSolicitud.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Persona.Codigo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Persona1.Codigo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TipoIncidencia.Descripcion)
+           
+            Fecha Solicitud
+            @*@Html.DisplayNameFor(model => model.TipoIncidencia.Descripcion)*@
         </th>
         <th></th>
     </tr>
@@ -42,33 +48,36 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaIncidencia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ComentariosSolicitud)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Departamento.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estatu.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EstatusSolicitud.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Persona.Codigo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Persona1.Codigo)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.TipoIncidencia.Descripcion)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SolicitudIncidenciaID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SolicitudIncidenciaID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SolicitudIncidenciaID })
+            @Html.DisplayFor(modelItem => item.Persona.Nombres)     @Html.DisplayFor(modelItem => item.Persona.Apellidos)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Departamento.Descripcion)
+        </td>
+        
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ComentariosSolicitud)
+        </td>*@
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.EstatusSolicitud.Descripcion)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Persona1.Nombres) @Html.DisplayFor(modelItem => item.Persona1.Apellidos)
+        </td>
+        <td>
+    @Html.DisplayFor(modelItem => item.FechaIncidencia)
+</td>
+
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.SolicitudIncidenciaID }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.SolicitudIncidenciaID }) |*@
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.SolicitudIncidenciaID })
         </td>
     </tr>
 }

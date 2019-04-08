@@ -5,91 +5,93 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Registrar Incidencia</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>SolictudIncidencia</h4>
+
+    <div class="form-inline">
+        @*<h4>SolictudIncidencia</h4>*@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.FechaIncidencia, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-horizontal">
+            @Html.LabelFor(model => model.FechaIncidencia, "Fecha de la Incidencia", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.FechaIncidencia, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FechaIncidencia, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DepartamentoID_Solicitud, "DepartamentoID_Solicitud", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-horizontal">
+            @Html.LabelFor(model => model.DepartamentoID_Solicitud, "Departamento", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
                 @Html.DropDownList("DepartamentoID_Solicitud", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DepartamentoID_Solicitud, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PersonaID_Solicitud, "PersonaID_Solicitud", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+    </div>
+    <div class="form-inline">
+        <div class="form-horizontal">
+            @Html.LabelFor(model => model.PersonaID_Solicitud, "Empleado", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
                 @Html.DropDownList("PersonaID_Solicitud", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PersonaID_Solicitud, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TipoIncidenciaID, "TipoIncidenciaID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-horizontal">
+            @Html.LabelFor(model => model.TipoIncidenciaID, "Tipo de Incidencia", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
                 @Html.DropDownList("TipoIncidenciaID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TipoIncidenciaID, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PersonaID_Tecnico, "PersonaID_Tecnico", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+    </div>
+    <div class="form-inline">
+        <div class="form-horizontal">
+            @Html.LabelFor(model => model.PersonaID_Tecnico, "Soporte", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
                 @Html.DropDownList("PersonaID_Tecnico", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PersonaID_Tecnico, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ComentariosSolicitud, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ComentariosSolicitud, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-horizontal">
+            @Html.LabelFor(model => model.ComentariosSolicitud, "Comentarios", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextAreaFor(model => model.ComentariosSolicitud, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ComentariosSolicitud, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EstatusSolicitudID, "EstatusSolicitudID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+    </div>
+    <div class="form-inline">
+        <div class="form-horizontal">
+            @Html.LabelFor(model => model.EstatusSolicitudID, "Estatus de Solicitud", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
                 @Html.DropDownList("EstatusSolicitudID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EstatusSolicitudID, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EstatusID, "EstatusID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-horizontal">
+            @Html.LabelFor(model => model.EstatusID, "Estatus", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
                 @Html.DropDownList("EstatusID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EstatusID, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+            
+        <div class="center-block">
+            <div class="col-md-offset-5 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
         </div>
-    </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver Atrás", "Index")
 </div>
 
 @section Scripts {
