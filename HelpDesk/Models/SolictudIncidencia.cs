@@ -14,6 +14,11 @@ namespace HelpDesk.Models
     
     public partial class SolictudIncidencia
     {
+        public SolictudIncidencia()
+        {
+            this.CierreSolicituds = new HashSet<CierreSolicitud>();
+        }
+    
         public int SolicitudIncidenciaID { get; set; }
         public System.DateTime FechaIncidencia { get; set; }
         public int DepartamentoID_Solicitud { get; set; }
@@ -30,5 +35,6 @@ namespace HelpDesk.Models
         public virtual Persona Persona { get; set; }
         public virtual Persona Persona1 { get; set; }
         public virtual TipoIncidencia TipoIncidencia { get; set; }
+        public virtual ICollection<CierreSolicitud> CierreSolicituds { get; set; }
     }
 }

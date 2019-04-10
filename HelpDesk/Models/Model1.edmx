@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AppHelpDeskModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CierreSolicitud">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SolicitudIncidenciaID" Type="int" Nullable="false" />
+          <Property Name="Cerrada" Type="bit" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="200" />
+          <Property Name="FechaCierre" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Departamentos">
           <Key>
             <PropertyRef Name="DepartamentoID" />
@@ -60,6 +70,7 @@
           <Property Name="TipoIncidenciaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EstatusID" Type="int" Nullable="false" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -71,6 +82,27 @@
           <Property Name="FechaUltimoAcceso" Type="datetime" />
           <Property Name="EstatusID" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AppHelpDesk.dbo.vIncidencias' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vIncidencias">
+          <Key>
+            <PropertyRef Name="SolicitudIncidenciaID" />
+          </Key>
+          <Property Name="SolicitudIncidenciaID" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="221" />
+        </EntityType>
+        <Association Name="FK_CierreSolicitud_SolictudIncidencias">
+          <End Role="SolictudIncidencias" Type="Self.SolictudIncidencias" Multiplicity="1" />
+          <End Role="CierreSolicitud" Type="Self.CierreSolicitud" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SolictudIncidencias">
+              <PropertyRef Name="SolicitudIncidenciaID" />
+            </Principal>
+            <Dependent Role="CierreSolicitud">
+              <PropertyRef Name="SolicitudIncidenciaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Departamentos_Estatus">
           <End Role="Estatus" Type="Self.Estatus" Multiplicity="1" />
           <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="*" />
@@ -179,18 +211,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TipoIncidencias_Estatus">
-          <End Role="Estatus" Type="Self.Estatus" Multiplicity="1" />
-          <End Role="TipoIncidencias" Type="Self.TipoIncidencias" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estatus">
-              <PropertyRef Name="EstatusID" />
-            </Principal>
-            <Dependent Role="TipoIncidencias">
-              <PropertyRef Name="EstatusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Usuarios_Estatus">
           <End Role="Estatus" Type="Self.Estatus" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
@@ -207,6 +227,7 @@
           <Parameter Name="Usuario" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="AppHelpDeskModelStoreContainer">
+          <EntitySet Name="CierreSolicitud" EntityType="Self.CierreSolicitud" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departamentos" EntityType="Self.Departamentos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estatus" EntityType="Self.Estatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EstatusSolicitud" EntityType="Self.EstatusSolicitud" Schema="dbo" store:Type="Tables" />
@@ -214,6 +235,16 @@
           <EntitySet Name="SolictudIncidencias" EntityType="Self.SolictudIncidencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoIncidencias" EntityType="Self.TipoIncidencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vIncidencias" EntityType="Self.vIncidencias" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vIncidencias].[SolicitudIncidenciaID] AS [SolicitudIncidenciaID], 
+[vIncidencias].[Descripcion] AS [Descripcion]
+FROM [dbo].[vIncidencias] AS [vIncidencias]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CierreSolicitud_SolictudIncidencias" Association="Self.FK_CierreSolicitud_SolictudIncidencias">
+            <End Role="SolictudIncidencias" EntitySet="SolictudIncidencias" />
+            <End Role="CierreSolicitud" EntitySet="CierreSolicitud" />
+          </AssociationSet>
           <AssociationSet Name="FK_Departamentos_Estatus" Association="Self.FK_Departamentos_Estatus">
             <End Role="Estatus" EntitySet="Estatus" />
             <End Role="Departamentos" EntitySet="Departamentos" />
@@ -249,10 +280,6 @@
           <AssociationSet Name="FK_SolictudIncidencias_TipoIncidencias" Association="Self.FK_SolictudIncidencias_TipoIncidencias">
             <End Role="TipoIncidencias" EntitySet="TipoIncidencias" />
             <End Role="SolictudIncidencias" EntitySet="SolictudIncidencias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TipoIncidencias_Estatus" Association="Self.FK_TipoIncidencias_Estatus">
-            <End Role="Estatus" EntitySet="Estatus" />
-            <End Role="TipoIncidencias" EntitySet="TipoIncidencias" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuarios_Estatus" Association="Self.FK_Usuarios_Estatus">
             <End Role="Estatus" EntitySet="Estatus" />
@@ -319,6 +346,7 @@
           <Property Name="EstatusID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Estatu" Relationship="Self.FK_TipoIncidencias_Estatus" FromRole="TipoIncidencias" ToRole="Estatus" />
           <NavigationProperty Name="SolictudIncidencias" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_TipoIncidencias" FromRole="TipoIncidencia" ToRole="SolictudIncidencia" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -446,6 +474,12 @@
             <End Role="TipoIncidencia" EntitySet="TipoIncidencias" />
             <End Role="SolictudIncidencia" EntitySet="SolictudIncidencias" />
           </AssociationSet>
+          <EntitySet Name="CierreSolicituds" EntityType="AppHelpDeskModel.CierreSolicitud" />
+          <AssociationSet Name="FK_CierreSolicitud_SolictudIncidencias" Association="AppHelpDeskModel.FK_CierreSolicitud_SolictudIncidencias">
+            <End Role="SolictudIncidencia" EntitySet="SolictudIncidencias" />
+            <End Role="CierreSolicitud" EntitySet="CierreSolicituds" />
+          </AssociationSet>
+          <EntitySet Name="vIncidencias" EntityType="AppHelpDeskModel.vIncidencias" />
         </EntityContainer>
         <EntityType Name="SolictudIncidencia">
           <Key>
@@ -466,6 +500,7 @@
           <NavigationProperty Name="Persona" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_Persona" FromRole="SolictudIncidencia" ToRole="Persona" />
           <NavigationProperty Name="Persona1" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_Persona1" FromRole="SolictudIncidencia" ToRole="Persona" />
           <NavigationProperty Name="TipoIncidencia" Relationship="AppHelpDeskModel.FK_SolictudIncidencias_TipoIncidencias" FromRole="SolictudIncidencia" ToRole="TipoIncidencia" />
+          <NavigationProperty Name="CierreSolicituds" Relationship="AppHelpDeskModel.FK_CierreSolicitud_SolictudIncidencias" FromRole="SolictudIncidencia" ToRole="CierreSolicitud" />
         </EntityType>
         <Association Name="FK_SolictudIncidencias_Departamentos">
           <End Type="AppHelpDeskModel.Departamento" Role="Departamento" Multiplicity="1" />
@@ -539,6 +574,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CierreSolicitud">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SolicitudIncidenciaID" Type="Int32" Nullable="false" />
+          <Property Name="Cerrada" Type="Boolean" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCierre" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SolictudIncidencia" Relationship="AppHelpDeskModel.FK_CierreSolicitud_SolictudIncidencias" FromRole="CierreSolicitud" ToRole="SolictudIncidencia" />
+        </EntityType>
+        <Association Name="FK_CierreSolicitud_SolictudIncidencias">
+          <End Type="AppHelpDeskModel.SolictudIncidencia" Role="SolictudIncidencia" Multiplicity="1" />
+          <End Type="AppHelpDeskModel.CierreSolicitud" Role="CierreSolicitud" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SolictudIncidencia">
+              <PropertyRef Name="SolicitudIncidenciaID" />
+            </Principal>
+            <Dependent Role="CierreSolicitud">
+              <PropertyRef Name="SolicitudIncidenciaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vIncidencias">
+          <Key>
+            <PropertyRef Name="SolicitudIncidenciaID" />
+          </Key>
+          <Property Name="SolicitudIncidenciaID" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="221" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -586,6 +651,7 @@
           <EntitySetMapping Name="TipoIncidencias">
             <EntityTypeMapping TypeName="AppHelpDeskModel.TipoIncidencia">
               <MappingFragment StoreEntitySet="TipoIncidencias">
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
                 <ScalarProperty Name="TipoIncidenciaID" ColumnName="TipoIncidenciaID" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="EstatusID" ColumnName="EstatusID" />
@@ -619,6 +685,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CierreSolicituds">
+            <EntityTypeMapping TypeName="AppHelpDeskModel.CierreSolicitud">
+              <MappingFragment StoreEntitySet="CierreSolicitud">
+                <ScalarProperty Name="FechaCierre" ColumnName="FechaCierre" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="Cerrada" ColumnName="Cerrada" />
+                <ScalarProperty Name="SolicitudIncidenciaID" ColumnName="SolicitudIncidenciaID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vIncidencias">
+            <EntityTypeMapping TypeName="AppHelpDeskModel.vIncidencias">
+              <MappingFragment StoreEntitySet="vIncidencias">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="SolicitudIncidenciaID" ColumnName="SolicitudIncidenciaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -633,7 +718,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

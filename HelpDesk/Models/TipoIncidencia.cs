@@ -22,6 +22,7 @@ namespace HelpDesk.Models
         public int TipoIncidenciaID { get; set; }
         public string Descripcion { get; set; }
         public int EstatusID { get; set; }
+        public string CorreoElectronico { get; set; }
     
         public virtual Estatu Estatu { get; set; }
         public virtual ICollection<SolictudIncidencia> SolictudIncidencias { get; set; }

@@ -10,112 +10,112 @@ using HelpDesk.Models;
 
 namespace HelpDesk.Controllers
 {
-    public class TipoIncidenciasController : Controller
+    public class CierreSolicitudController : Controller
     {
         private AppHelpDeskEntities db = new AppHelpDeskEntities();
 
-        // GET: TipoIncidencias
+        // GET: CierreSolicitud
         public ActionResult Index()
         {
-            var tipoIncidencias = db.TipoIncidencias.Include(t => t.Estatu);
-            return View(tipoIncidencias.ToList());
+            var cierreSolicituds = db.CierreSolicituds.Include(c => c.SolictudIncidencia);
+            return View(cierreSolicituds.ToList());
         }
-        
-        // GET: TipoIncidencias/Details/5
+
+        // GET: CierreSolicitud/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoIncidencia tipoIncidencia = db.TipoIncidencias.Find(id);
-            if (tipoIncidencia == null)
+            CierreSolicitud cierreSolicitud = db.CierreSolicituds.Find(id);
+            if (cierreSolicitud == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoIncidencia);
+            return View(cierreSolicitud);
         }
 
-        // GET: TipoIncidencias/Create
+        // GET: CierreSolicitud/Create
         public ActionResult Create()
         {
-            ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion");
+            ViewBag.SolicitudIncidenciaID = new SelectList(db.vIncidencias, "SolicitudIncidenciaID", "Descripcion");
             return View();
         }
 
-        // POST: TipoIncidencias/Create
+        // POST: CierreSolicitud/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TipoIncidenciaID,Descripcion,EstatusID")] TipoIncidencia tipoIncidencia)
+        public ActionResult Create([Bind(Include = "ID,SolicitudIncidenciaID,Cerrada,Comentarios,FechaCierre")] CierreSolicitud cierreSolicitud)
         {
             if (ModelState.IsValid)
             {
-                db.TipoIncidencias.Add(tipoIncidencia);
+                db.CierreSolicituds.Add(cierreSolicitud);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion", tipoIncidencia.EstatusID);
-            return View(tipoIncidencia);
+            ViewBag.SolicitudIncidenciaID = new SelectList(db.SolictudIncidencias, "SolicitudIncidenciaID", "ComentariosSolicitud", cierreSolicitud.SolicitudIncidenciaID);
+            return View(cierreSolicitud);
         }
 
-        // GET: TipoIncidencias/Edit/5
+        // GET: CierreSolicitud/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoIncidencia tipoIncidencia = db.TipoIncidencias.Find(id);
-            if (tipoIncidencia == null)
+            CierreSolicitud cierreSolicitud = db.CierreSolicituds.Find(id);
+            if (cierreSolicitud == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion", tipoIncidencia.EstatusID);
-            return View(tipoIncidencia);
+            ViewBag.SolicitudIncidenciaID = new SelectList(db.SolictudIncidencias, "SolicitudIncidenciaID", "ComentariosSolicitud", cierreSolicitud.SolicitudIncidenciaID);
+            return View(cierreSolicitud);
         }
 
-        // POST: TipoIncidencias/Edit/5
+        // POST: CierreSolicitud/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TipoIncidenciaID,Descripcion,EstatusID")] TipoIncidencia tipoIncidencia)
+        public ActionResult Edit([Bind(Include = "ID,SolicitudIncidenciaID,Cerrada,Comentarios,FechaCierre")] CierreSolicitud cierreSolicitud)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tipoIncidencia).State = EntityState.Modified;
+                db.Entry(cierreSolicitud).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion", tipoIncidencia.EstatusID);
-            return View(tipoIncidencia);
+            ViewBag.SolicitudIncidenciaID = new SelectList(db.SolictudIncidencias, "SolicitudIncidenciaID", "ComentariosSolicitud", cierreSolicitud.SolicitudIncidenciaID);
+            return View(cierreSolicitud);
         }
 
-        // GET: TipoIncidencias/Delete/5
+        // GET: CierreSolicitud/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoIncidencia tipoIncidencia = db.TipoIncidencias.Find(id);
-            if (tipoIncidencia == null)
+            CierreSolicitud cierreSolicitud = db.CierreSolicituds.Find(id);
+            if (cierreSolicitud == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoIncidencia);
+            return View(cierreSolicitud);
         }
 
-        // POST: TipoIncidencias/Delete/5
+        // POST: CierreSolicitud/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TipoIncidencia tipoIncidencia = db.TipoIncidencias.Find(id);
-            db.TipoIncidencias.Remove(tipoIncidencia);
+            CierreSolicitud cierreSolicitud = db.CierreSolicituds.Find(id);
+            db.CierreSolicituds.Remove(cierreSolicitud);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
