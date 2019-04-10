@@ -83,6 +83,25 @@
           <Property Name="EstatusID" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'AppHelpDesk.dbo.vPersona' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vPersona">
+          <Key>
+            <PropertyRef Name="PersonaID" />
+            
+          </Key>
+          <Property Name="PersonaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombrecompleto" Type="varchar" MaxLength="101" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AppHelpDesk.dbo.vPersonaTecnico' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vPersonaTecnico">
+          <Key>
+            <PropertyRef Name="PersonaID" />
+          </Key>
+          <Property Name="PersonaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombrecompleto" Type="varchar" MaxLength="101" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'AppHelpDesk.dbo.vIncidencias' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vIncidencias">
           <Key>
@@ -235,6 +254,18 @@ warning 6002: The table/view 'AppHelpDesk.dbo.vIncidencias' does not have a prim
           <EntitySet Name="SolictudIncidencias" EntityType="Self.SolictudIncidencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoIncidencias" EntityType="Self.TipoIncidencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vPersona" EntityType="Self.vPersona" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vPersona].[PersonaID] AS [PersonaID], 
+[vPersona].[Nombrecompleto] AS [Nombrecompleto]
+FROM [dbo].[vPersona] AS [vPersona]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vPersonaTecnico" EntityType="Self.vPersonaTecnico" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vPersonaTecnico].[PersonaID] AS [PersonaID], 
+[vPersonaTecnico].[Nombrecompleto] AS [Nombrecompleto]
+FROM [dbo].[vPersonaTecnico] AS [vPersonaTecnico]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vIncidencias" EntityType="Self.vIncidencias" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [vIncidencias].[SolicitudIncidenciaID] AS [SolicitudIncidenciaID], 
@@ -479,6 +510,8 @@ FROM [dbo].[vIncidencias] AS [vIncidencias]</DefiningQuery>
             <End Role="SolictudIncidencia" EntitySet="SolictudIncidencias" />
             <End Role="CierreSolicitud" EntitySet="CierreSolicituds" />
           </AssociationSet>
+          <EntitySet Name="vPersonas" EntityType="AppHelpDeskModel.vPersona" />
+          <EntitySet Name="vPersonaTecnicoes" EntityType="AppHelpDeskModel.vPersonaTecnico" />
           <EntitySet Name="vIncidencias" EntityType="AppHelpDeskModel.vIncidencias" />
         </EntityContainer>
         <EntityType Name="SolictudIncidencia">
@@ -604,6 +637,20 @@ FROM [dbo].[vIncidencias] AS [vIncidencias]</DefiningQuery>
           <Property Name="SolicitudIncidenciaID" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="221" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="vPersona">
+          <Key>
+            <PropertyRef Name="PersonaID" />
+          </Key>
+          <Property Name="PersonaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombrecompleto" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vPersonaTecnico">
+          <Key>
+            <PropertyRef Name="PersonaID" />
+          </Key>
+          <Property Name="PersonaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombrecompleto" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -701,6 +748,22 @@ FROM [dbo].[vIncidencias] AS [vIncidencias]</DefiningQuery>
               <MappingFragment StoreEntitySet="vIncidencias">
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="SolicitudIncidenciaID" ColumnName="SolicitudIncidenciaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vPersonas">
+            <EntityTypeMapping TypeName="AppHelpDeskModel.vPersona">
+              <MappingFragment StoreEntitySet="vPersona">
+                <ScalarProperty Name="Nombrecompleto" ColumnName="Nombrecompleto" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vPersonaTecnicoes">
+            <EntityTypeMapping TypeName="AppHelpDeskModel.vPersonaTecnico">
+              <MappingFragment StoreEntitySet="vPersonaTecnico">
+                <ScalarProperty Name="Nombrecompleto" ColumnName="Nombrecompleto" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

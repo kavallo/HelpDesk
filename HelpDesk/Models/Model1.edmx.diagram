@@ -23,6 +23,8 @@
         <AssociationConnector Association="AppHelpDeskModel.FK_SolictudIncidencias_Persona" />
         <AssociationConnector Association="AppHelpDeskModel.FK_SolictudIncidencias_Persona1" />
         <AssociationConnector Association="AppHelpDeskModel.FK_SolictudIncidencias_TipoIncidencias" />
+        <EntityTypeShape EntityType="AppHelpDeskModel.vPersona" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AppHelpDeskModel.vPersonaTecnico" Width="2" PointX="2.625" PointY="0.875" />
         <EntityTypeShape EntityType="AppHelpDeskModel.CierreSolicitud" Width="1.5" PointX="11.375" PointY="3.5" />
         <AssociationConnector Association="AppHelpDeskModel.FK_CierreSolicitud_SolictudIncidencias" />
         <EntityTypeShape EntityType="AppHelpDeskModel.vIncidencias" Width="1.5" PointX="0.75" PointY="0.75" />
