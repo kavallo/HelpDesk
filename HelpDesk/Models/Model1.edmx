@@ -71,6 +71,25 @@
           <Property Name="FechaUltimoAcceso" Type="datetime" />
           <Property Name="EstatusID" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AppHelpDesk.dbo.vPersona' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vPersona">
+          <Key>
+            <PropertyRef Name="PersonaID" />
+            
+          </Key>
+          <Property Name="PersonaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombrecompleto" Type="varchar" MaxLength="101" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AppHelpDesk.dbo.vPersonaTecnico' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vPersonaTecnico">
+          <Key>
+            <PropertyRef Name="PersonaID" />
+          </Key>
+          <Property Name="PersonaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombrecompleto" Type="varchar" MaxLength="101" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Departamentos_Estatus">
           <End Role="Estatus" Type="Self.Estatus" Multiplicity="1" />
           <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="*" />
@@ -214,6 +233,18 @@
           <EntitySet Name="SolictudIncidencias" EntityType="Self.SolictudIncidencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoIncidencias" EntityType="Self.TipoIncidencias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vPersona" EntityType="Self.vPersona" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vPersona].[PersonaID] AS [PersonaID], 
+[vPersona].[Nombrecompleto] AS [Nombrecompleto]
+FROM [dbo].[vPersona] AS [vPersona]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vPersonaTecnico" EntityType="Self.vPersonaTecnico" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vPersonaTecnico].[PersonaID] AS [PersonaID], 
+[vPersonaTecnico].[Nombrecompleto] AS [Nombrecompleto]
+FROM [dbo].[vPersonaTecnico] AS [vPersonaTecnico]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Departamentos_Estatus" Association="Self.FK_Departamentos_Estatus">
             <End Role="Estatus" EntitySet="Estatus" />
             <End Role="Departamentos" EntitySet="Departamentos" />
@@ -446,6 +477,8 @@
             <End Role="TipoIncidencia" EntitySet="TipoIncidencias" />
             <End Role="SolictudIncidencia" EntitySet="SolictudIncidencias" />
           </AssociationSet>
+          <EntitySet Name="vPersonas" EntityType="AppHelpDeskModel.vPersona" />
+          <EntitySet Name="vPersonaTecnicoes" EntityType="AppHelpDeskModel.vPersonaTecnico" />
         </EntityContainer>
         <EntityType Name="SolictudIncidencia">
           <Key>
@@ -539,6 +572,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="vPersona">
+          <Key>
+            <PropertyRef Name="PersonaID" />
+          </Key>
+          <Property Name="PersonaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombrecompleto" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vPersonaTecnico">
+          <Key>
+            <PropertyRef Name="PersonaID" />
+          </Key>
+          <Property Name="PersonaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombrecompleto" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -616,6 +663,22 @@
                 <ScalarProperty Name="DepartamentoID_Solicitud" ColumnName="DepartamentoID_Solicitud" />
                 <ScalarProperty Name="FechaIncidencia" ColumnName="FechaIncidencia" />
                 <ScalarProperty Name="SolicitudIncidenciaID" ColumnName="SolicitudIncidenciaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vPersonas">
+            <EntityTypeMapping TypeName="AppHelpDeskModel.vPersona">
+              <MappingFragment StoreEntitySet="vPersona">
+                <ScalarProperty Name="Nombrecompleto" ColumnName="Nombrecompleto" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vPersonaTecnicoes">
+            <EntityTypeMapping TypeName="AppHelpDeskModel.vPersonaTecnico">
+              <MappingFragment StoreEntitySet="vPersonaTecnico">
+                <ScalarProperty Name="Nombrecompleto" ColumnName="Nombrecompleto" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

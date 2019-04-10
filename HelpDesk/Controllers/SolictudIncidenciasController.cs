@@ -42,8 +42,8 @@ namespace HelpDesk.Controllers
             ViewBag.DepartamentoID_Solicitud = new SelectList(db.Departamentos, "DepartamentoID", "Descripcion");
             ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion");
             ViewBag.EstatusSolicitudID = new SelectList(db.EstatusSolicituds, "EstatusSolicitudID", "Descripcion");
-            ViewBag.PersonaID_Solicitud = new SelectList(db.Personas, "PersonaID", "Codigo");
-            ViewBag.PersonaID_Tecnico = new SelectList(db.Personas, "PersonaID", "Codigo");
+            ViewBag.PersonaID_Solicitud = new SelectList(db.vPersonas, "PersonaID", "Nombrecompleto");
+            ViewBag.PersonaID_Tecnico = new SelectList(db.vPersonaTecnicoes, "PersonaID", "Nombrecompleto");
             ViewBag.TipoIncidenciaID = new SelectList(db.TipoIncidencias, "TipoIncidenciaID", "Descripcion");
             return View();
         }
@@ -65,8 +65,8 @@ namespace HelpDesk.Controllers
             ViewBag.DepartamentoID_Solicitud = new SelectList(db.Departamentos, "DepartamentoID", "Descripcion", solictudIncidencia.DepartamentoID_Solicitud);
             ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion", solictudIncidencia.EstatusID);
             ViewBag.EstatusSolicitudID = new SelectList(db.EstatusSolicituds, "EstatusSolicitudID", "Descripcion", solictudIncidencia.EstatusSolicitudID);
-            ViewBag.PersonaID_Solicitud = new SelectList(db.Personas, "PersonaID", "Codigo", solictudIncidencia.PersonaID_Solicitud);
-            ViewBag.PersonaID_Tecnico = new SelectList(db.Personas, "PersonaID", "Codigo", solictudIncidencia.PersonaID_Tecnico);
+            ViewBag.PersonaID_Solicitud = new SelectList(db.vPersonas, "PersonaID", "Nombrecompleto", solictudIncidencia.PersonaID_Solicitud);
+            ViewBag.PersonaID_Tecnico = new SelectList(db.vPersonaTecnicoes, "PersonaID", "Nombrecompleto", solictudIncidencia.PersonaID_Tecnico);
             ViewBag.TipoIncidenciaID = new SelectList(db.TipoIncidencias, "TipoIncidenciaID", "Descripcion", solictudIncidencia.TipoIncidenciaID);
             return View(solictudIncidencia);
         }
@@ -86,8 +86,8 @@ namespace HelpDesk.Controllers
             ViewBag.DepartamentoID_Solicitud = new SelectList(db.Departamentos, "DepartamentoID", "Descripcion", solictudIncidencia.DepartamentoID_Solicitud);
             ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion", solictudIncidencia.EstatusID);
             ViewBag.EstatusSolicitudID = new SelectList(db.EstatusSolicituds, "EstatusSolicitudID", "Descripcion", solictudIncidencia.EstatusSolicitudID);
-            ViewBag.PersonaID_Solicitud = new SelectList(db.Personas, "PersonaID", "Codigo", solictudIncidencia.PersonaID_Solicitud);
-            ViewBag.PersonaID_Tecnico = new SelectList(db.Personas, "PersonaID", "Codigo", solictudIncidencia.PersonaID_Tecnico);
+            ViewBag.PersonaID_Solicitud = new SelectList(db.vPersonas, "PersonaID", "Nombrecompleto", solictudIncidencia.PersonaID_Solicitud);
+            ViewBag.PersonaID_Tecnico = new SelectList(db.vPersonaTecnicoes, "PersonaID", "Nombrecompleto", solictudIncidencia.PersonaID_Tecnico);
             ViewBag.TipoIncidenciaID = new SelectList(db.TipoIncidencias, "TipoIncidenciaID", "Descripcion", solictudIncidencia.TipoIncidenciaID);
             return View(solictudIncidencia);
         }
@@ -108,8 +108,8 @@ namespace HelpDesk.Controllers
             ViewBag.DepartamentoID_Solicitud = new SelectList(db.Departamentos, "DepartamentoID", "Descripcion", solictudIncidencia.DepartamentoID_Solicitud);
             ViewBag.EstatusID = new SelectList(db.Estatus, "EstatusID", "Descripcion", solictudIncidencia.EstatusID);
             ViewBag.EstatusSolicitudID = new SelectList(db.EstatusSolicituds, "EstatusSolicitudID", "Descripcion", solictudIncidencia.EstatusSolicitudID);
-            ViewBag.PersonaID_Solicitud = new SelectList(db.Personas, "PersonaID", "Codigo", solictudIncidencia.PersonaID_Solicitud);
-            ViewBag.PersonaID_Tecnico = new SelectList(db.Personas, "PersonaID", "Codigo", solictudIncidencia.PersonaID_Tecnico);
+            ViewBag.PersonaID_Solicitud = new SelectList(db.vPersonas, "PersonaID", "Nombrecompleto", solictudIncidencia.PersonaID_Solicitud);
+            ViewBag.PersonaID_Tecnico = new SelectList(db.vPersonaTecnicoes, "PersonaID", "Nombrecompleto", solictudIncidencia.PersonaID_Tecnico);
             ViewBag.TipoIncidenciaID = new SelectList(db.TipoIncidencias, "TipoIncidenciaID", "Descripcion", solictudIncidencia.TipoIncidenciaID);
             return View(solictudIncidencia);
         }

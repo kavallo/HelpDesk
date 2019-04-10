@@ -13,21 +13,26 @@
 <table class="table">
     <tr>
         <th>
+
+            #
+            @*@Html.DisplayNameFor(model => model.TipoIncidencia.Descripcion)*@
+        </th>
+        <th>
             Tipo Incidencia
             @* @Html.DisplayNameFor(model => model.FechaIncidencia)*@
         </th>
         @*<th>
-          Detalles
-           @* @Html.DisplayNameFor(model => model.ComentariosSolicitud)*@
-     
+        Detalles
+         @* @Html.DisplayNameFor(model => model.ComentariosSolicitud)*@
+
         <th>
-          Solicitante
-           @* @Html.DisplayNameFor(model => model.Departamento.Descripcion)*@
+            Solicitante
+            @* @Html.DisplayNameFor(model => model.Departamento.Descripcion)*@
         </th>
-     
+
         <th>
-           Departamento Solicitud
-         @*   @Html.DisplayNameFor(model => model.EstatusSolicitud.Descripcion)*@
+            Departamento Solicitud
+            @*   @Html.DisplayNameFor(model => model.EstatusSolicitud.Descripcion)*@
         </th>
         <th>
             Estatus Solicitud
@@ -38,7 +43,7 @@
             @*@Html.DisplayNameFor(model => model.Persona1.Codigo)*@
         </th>
         <th>
-           
+
             Fecha Solicitud
             @*@Html.DisplayNameFor(model => model.TipoIncidencia.Descripcion)*@
         </th>
@@ -47,6 +52,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SolicitudIncidenciaID)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.TipoIncidencia.Descripcion)
         </td>
@@ -57,7 +65,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Departamento.Descripcion)
         </td>
-        
+
         @*<td>
             @Html.DisplayFor(modelItem => item.ComentariosSolicitud)
         </td>*@
@@ -71,8 +79,9 @@
             @Html.DisplayFor(modelItem => item.Persona1.Nombres) @Html.DisplayFor(modelItem => item.Persona1.Apellidos)
         </td>
         <td>
-    @Html.DisplayFor(modelItem => item.FechaIncidencia)
-</td>
+            @*@Html.DisplayFor(modelItem => item.FechaIncidencia)*@
+            @item.FechaIncidencia.ToString("dd/MM/yyyy")
+        </td>
 
         <td>
             @Html.ActionLink("Editar", "Edit", new { id = item.SolicitudIncidenciaID }) |

@@ -12,14 +12,9 @@ namespace HelpDesk.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class vPersonaTecnico
     {
-        public int UsuarioID { get; set; }
-        public string Usuario1 { get; set; }
-        public string Clave { get; set; }
-        public Nullable<System.DateTime> FechaUltimoAcceso { get; set; }
-        public int EstatusID { get; set; }
-    
-        public virtual Estatu Estatu { get; set; }
+        public int PersonaID { get; set; }
+        public string Nombrecompleto { get; set; }
     }
 }
