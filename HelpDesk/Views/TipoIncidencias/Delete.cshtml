@@ -6,15 +6,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Eliminar Incidencia</h2>
 
-<h3>Estas seguro que deseas eliminar esto?</h3>
+<h3>Estas seguro que deseas eliminar esta Incidencia?</h3>
 <div>
     <h4></h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            Incidencia
+          @*  @Html.DisplayNameFor(model => model.Descripcion)*@
         </dt>
 
         <dd>
@@ -22,7 +23,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Estatu.Descripcion)
+            Estatus
+           @* @Html.DisplayNameFor(model => model.Estatu.Descripcion)*@
         </dt>
 
         <dd>
@@ -35,8 +37,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Volver al Menu", "Index")
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver Atrás", "Index")
         </div>
     }
 </div>

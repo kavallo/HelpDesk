@@ -7,13 +7,14 @@
 
 <h2>Eliminar</h2>
 
-<h3>Estas seguro de que quieres Eliminar esto?</h3>
+<h3>Estas seguro de Eliminar esta Persona?</h3>
 <div>
     <h4></h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Codigo)
+            Código
+          @*  @Html.DisplayNameFor(model => model.Codigo)*@
         </dt>
 
         <dd>
@@ -37,7 +38,8 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EsTecnico)
+        Es Tecníco
+            @*  @Html.DisplayNameFor(model => model.EsTecnico)*@
         </dt>
 
         <dd>
@@ -45,20 +47,22 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Departamento.Descripcion)
+           Departamento
+            @*@Html.DisplayNameFor(model => model.Departamento.Descripcion)*@
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Departamento.Descripcion)
         </dd>
 
-        <dt>
+        @*<dt>
+
             @Html.DisplayNameFor(model => model.Estatu.Descripcion)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Estatu.Descripcion)
-        </dd>
+        </dd>*@
 
     </dl>
 
