@@ -11,6 +11,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SolicitudIncidenciaID" Type="int" Nullable="false" />
+          <Property Name="DatoRelacionado" Type="varchar" MaxLength="50" />
           <Property Name="Cerrada" Type="bit" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="200" />
           <Property Name="FechaCierre" Type="datetime" Nullable="false" />
@@ -87,9 +88,11 @@ warning 6002: The table/view 'AppHelpDesk.dbo.vIncidencias' does not have a prim
         <EntityType Name="vIncidencias">
           <Key>
             <PropertyRef Name="SolicitudIncidenciaID" />
+            <PropertyRef Name="EstatusSolicitudID" />
           </Key>
           <Property Name="SolicitudIncidenciaID" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="221" />
+          <Property Name="EstatusSolicitudID" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'AppHelpDesk.dbo.vPersona' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -258,7 +261,8 @@ warning 6002: The table/view 'AppHelpDesk.dbo.vPersonaTecnico' does not have a p
           <EntitySet Name="vIncidencias" EntityType="Self.vIncidencias" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [vIncidencias].[SolicitudIncidenciaID] AS [SolicitudIncidenciaID], 
-[vIncidencias].[Descripcion] AS [Descripcion]
+[vIncidencias].[Descripcion] AS [Descripcion], 
+[vIncidencias].[EstatusSolicitudID] AS [EstatusSolicitudID]
 FROM [dbo].[vIncidencias] AS [vIncidencias]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vPersona" EntityType="Self.vPersona" store:Type="Views" store:Schema="dbo">
@@ -618,6 +622,7 @@ FROM [dbo].[vPersonaTecnico] AS [vPersonaTecnico]</DefiningQuery>
           <Property Name="Comentarios" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="FechaCierre" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="SolictudIncidencia" Relationship="AppHelpDeskModel.FK_CierreSolicitud_SolictudIncidencias" FromRole="CierreSolicitud" ToRole="SolictudIncidencia" />
+          <Property Name="DatoRelacionado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_CierreSolicitud_SolictudIncidencias">
           <End Type="AppHelpDeskModel.SolictudIncidencia" Role="SolictudIncidencia" Multiplicity="1" />
@@ -648,9 +653,11 @@ FROM [dbo].[vPersonaTecnico] AS [vPersonaTecnico]</DefiningQuery>
         <EntityType Name="vIncidencias">
           <Key>
             <PropertyRef Name="SolicitudIncidenciaID" />
+            <PropertyRef Name="EstatusSolicitudID" />
           </Key>
           <Property Name="SolicitudIncidenciaID" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="221" FixedLength="false" Unicode="false" />
+          <Property Name="EstatusSolicitudID" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -736,6 +743,7 @@ FROM [dbo].[vPersonaTecnico] AS [vPersonaTecnico]</DefiningQuery>
           <EntitySetMapping Name="CierreSolicituds">
             <EntityTypeMapping TypeName="AppHelpDeskModel.CierreSolicitud">
               <MappingFragment StoreEntitySet="CierreSolicitud">
+                <ScalarProperty Name="DatoRelacionado" ColumnName="DatoRelacionado" />
                 <ScalarProperty Name="FechaCierre" ColumnName="FechaCierre" />
                 <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
                 <ScalarProperty Name="Cerrada" ColumnName="Cerrada" />
@@ -763,6 +771,7 @@ FROM [dbo].[vPersonaTecnico] AS [vPersonaTecnico]</DefiningQuery>
           <EntitySetMapping Name="vIncidencias">
             <EntityTypeMapping TypeName="AppHelpDeskModel.vIncidencias">
               <MappingFragment StoreEntitySet="vIncidencias">
+                <ScalarProperty Name="EstatusSolicitudID" ColumnName="EstatusSolicitudID" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="SolicitudIncidenciaID" ColumnName="SolicitudIncidenciaID" />
               </MappingFragment>

@@ -19,6 +19,7 @@ namespace HelpDesk.Models
         public bool Cerrada { get; set; }
         public string Comentarios { get; set; }
         public System.DateTime FechaCierre { get; set; }
+        public string DatoRelacionado { get; set; }
     
         public virtual SolictudIncidencia SolictudIncidencia { get; set; }
     }

@@ -39,7 +39,9 @@ namespace HelpDesk.Controllers
         // GET: CierreSolicitud/Create
         public ActionResult Create()
         {
-            ViewBag.SolicitudIncidenciaID = new SelectList(db.vIncidencias, "SolicitudIncidenciaID", "Descripcion");
+
+
+            ViewBag.SolicitudIncidenciaID = new SelectList(db.vIncidencias.Where(c => c.EstatusSolicitudID != 5), "SolicitudIncidenciaID", "Descripcion");
             return View();
         }
 
@@ -50,15 +52,23 @@ namespace HelpDesk.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,SolicitudIncidenciaID,Cerrada,Comentarios,FechaCierre")] CierreSolicitud cierreSolicitud)
         {
+
+                                
+                        
             if (ModelState.IsValid)
             {
+
                 db.CierreSolicituds.Add(cierreSolicitud);
                 db.SaveChanges();
+
+               
                 return RedirectToAction("Index");
             }
 
             ViewBag.SolicitudIncidenciaID = new SelectList(db.SolictudIncidencias, "SolicitudIncidenciaID", "ComentariosSolicitud", cierreSolicitud.SolicitudIncidenciaID);
             return View(cierreSolicitud);
+
+
         }
 
         // GET: CierreSolicitud/Edit/5
@@ -128,5 +138,9 @@ namespace HelpDesk.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+       
+
     }
 }

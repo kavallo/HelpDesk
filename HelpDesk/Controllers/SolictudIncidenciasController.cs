@@ -241,7 +241,7 @@ namespace HelpDesk.Controllers
         {
             bool result = false;
 
-            result = SendEmail("gabriel.consultechdr@gmail.com", "holammg", "     <p>hola mmmmmm <br /> es una prueba <br /> Regars </p>");
+            result = SendEmail("gabriel.consultechdr@gmail.com", "hola", "     <p>hola mmmmmm <br /> es una prueba <br /> Regars </p>");
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }

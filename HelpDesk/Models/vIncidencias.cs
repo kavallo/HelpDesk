@@ -16,5 +16,6 @@ namespace HelpDesk.Models
     {
         public int SolicitudIncidenciaID { get; set; }
         public string Descripcion { get; set; }
+        public int EstatusSolicitudID { get; set; }
     }
 }

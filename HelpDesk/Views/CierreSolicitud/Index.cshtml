@@ -19,9 +19,23 @@
             @Html.DisplayNameFor(model => model.Comentarios)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaCierre)
+            Numero de Solicitud
+            @* @Html.DisplayNameFor(model => model.SolicitudIncidenciaID)*@
         </th>
-      
+        <th>
+            Soporte Asignado
+        </th>
+        <th>
+
+            Fecha de Solicitud
+            @*@Html.DisplayNameFor(model => model.FechaCierre)*@
+        </th>
+        <th>
+
+            Fecha de Cierre
+            @*@Html.DisplayNameFor(model => model.FechaCierre)*@
+        </th>
+
         <th></th>
     </tr>
 
@@ -34,13 +48,23 @@
             @Html.DisplayFor(modelItem => item.Comentarios)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaCierre)
+            @Html.DisplayFor(modelItem => item.SolicitudIncidenciaID)
         </td>
-        
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.DisplayFor(modelItem => item.SolictudIncidencia.Persona1.Nombres)  @Html.DisplayFor(modelItem => item.SolictudIncidencia.Persona1.Apellidos)
+        </td>
+        <td>
+            @item.SolictudIncidencia.FechaIncidencia.ToString("dd/MM/yyyy") 
+        </td>
+        <td>
+            @*   @Html.DisplayFor(modelItem => item.FechaCierre)*@
+            @item.FechaCierre.ToString("dd/MM/yyyy")
+        </td>
+
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
             @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
         </td>
     </tr>
 }
