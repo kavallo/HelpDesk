@@ -11,7 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         @*<h4>CierreSolicitud</h4>*@
         <hr />
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Cerrada, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
@@ -34,7 +34,7 @@
                     @Html.ValidationMessageFor(model => model.Cerrada, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Comentarios, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -47,7 +47,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FechaCierre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaCierre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.FechaCierre, new { htmlAttributes = new { @class = "form-control datepicker", autocomplete = "off", } })
                 @Html.ValidationMessageFor(model => model.FechaCierre, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -64,6 +64,26 @@
     @Html.ActionLink("Volver Atrás", "Index")
 </div>
 
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
 @section Scripts {
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+    <script>
+
+        $(function () {
+
+            $(".datepicker").datepicker(
+                {
+                    dateformat: "dd/mm/yy",
+                    changeMonth: true,
+                    changeYear: true,
+
+
+                });
+
+        });
+    </script>
+
     @Scripts.Render("~/bundles/jqueryval")
 }

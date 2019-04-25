@@ -52,16 +52,17 @@ namespace HelpDesk.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,SolicitudIncidenciaID,Cerrada,Comentarios,FechaCierre")] CierreSolicitud cierreSolicitud)
         {
+            var completa = db.CierreSolicituds.Where(x => x.SolicitudIncidenciaID== cierreSolicitud.SolicitudIncidenciaID && x.Cerrada == cierreSolicitud.Cerrada).FirstOrDefault();
 
-                                
-                        
+
             if (ModelState.IsValid)
             {
 
                 db.CierreSolicituds.Add(cierreSolicitud);
                 db.SaveChanges();
+                var oo = db.SpUpcerrar1(cierreSolicitud.SolicitudIncidenciaID);
 
-               
+
                 return RedirectToAction("Index");
             }
 
@@ -83,7 +84,7 @@ namespace HelpDesk.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SolicitudIncidenciaID = new SelectList(db.SolictudIncidencias, "SolicitudIncidenciaID", "ComentariosSolicitud", cierreSolicitud.SolicitudIncidenciaID);
+            ViewBag.SolicitudIncidenciaID = new SelectList(db.vIncidencias.Where(c => c.SolicitudIncidenciaID == cierreSolicitud.SolicitudIncidenciaID  ), "SolicitudIncidenciaID", "Descripcion");
             return View(cierreSolicitud);
         }
 

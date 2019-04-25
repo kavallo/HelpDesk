@@ -9,6 +9,7 @@
 
 namespace HelpDesk.Models
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Core.Objects;
     using System.Data.Entity.Infrastructure;
@@ -44,6 +45,28 @@ namespace HelpDesk.Models
                 new ObjectParameter("Usuario", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spultimoinicio", usuarioParameter);
+        }
+    
+        public virtual int SpUpcerrar(Nullable<int> estatusSolicitudID, Nullable<int> solicitudIncicendiaID)
+        {
+            var estatusSolicitudIDParameter = estatusSolicitudID.HasValue ?
+                new ObjectParameter("EstatusSolicitudID", estatusSolicitudID) :
+                new ObjectParameter("EstatusSolicitudID", typeof(int));
+    
+            var solicitudIncicendiaIDParameter = solicitudIncicendiaID.HasValue ?
+                new ObjectParameter("SolicitudIncicendiaID", solicitudIncicendiaID) :
+                new ObjectParameter("SolicitudIncicendiaID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SpUpcerrar", estatusSolicitudIDParameter, solicitudIncicendiaIDParameter);
+        }
+    
+        public virtual int SpUpcerrar1(Nullable<int> solicitudIncicendiaID)
+        {
+            var solicitudIncicendiaIDParameter = solicitudIncicendiaID.HasValue ?
+                new ObjectParameter("SolicitudIncicendiaID", solicitudIncicendiaID) :
+                new ObjectParameter("SolicitudIncicendiaID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SpUpcerrar1", solicitudIncicendiaIDParameter);
         }
     }
 }
