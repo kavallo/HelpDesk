@@ -45,6 +45,17 @@ namespace HelpDesk.Controllers
             return View();
         }
 
+        public JsonResult LLamar(int ID)
+        {
+
+            //ViewBag.SolicitudIncidenciaID = new SelectList(db.vIncidencias, "SolicitudIncidenciaID", "Descripcion");
+
+            //return Json(db.SolictudIncidencias.ToList().Select(t => t.SolicitudIncidenciaID = ID));
+
+            return Json(db.vIncidencias.Where(t => t.SolicitudIncidenciaID == ID), "SolicitudIncidenciaID" + "Descripcion");
+        }
+
+
         // POST: CierreSolicitud/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -140,8 +151,12 @@ namespace HelpDesk.Controllers
             base.Dispose(disposing);
         }
 
-
-       
-
+        private JsonResult Json(Func<int, JsonResult> lLamar)
+        {
+            throw new NotImplementedException();
+        }
     }
+
+
 }
+
