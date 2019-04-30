@@ -20,11 +20,10 @@
 
 <h2>Cerrar Incidencia</h2>
 
-
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
 
+    @Html.AntiForgeryToken()
     <div class="form-horizontal">
         @*<h4>CierreSolicitud</h4>*@
         <hr />
@@ -41,13 +40,17 @@
         </div>
 
         <div class="">
-            <div class="center-block">
-                @Html.LabelFor(model => model.DatoRelacionado, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="  editor-field ">
-                    @Html.TextAreaFor(model => model.DatoRelacionado, new { htmlAttributes = new { @class = "form-control" } })
+            @*<div class="center-block">
+                    @Html.LabelFor(model => model.DatoRelacionado, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="  editor-field ">
+                        @Html.TextAreaFor(model => model.DatoRelacionado, new { htmlAttributes = new { @class = "form-control" } })
 
-                    @Html.ValidationMessageFor(model => model.DatoRelacionado, "", new { @class = "text-danger" })
-                </div>
+                        @Html.ValidationMessageFor(model => model.DatoRelacionado, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div>
+                <span id="lblFecha">Fecha Solicitud : </span>
             </div>
         </div>
 
@@ -98,8 +101,13 @@
             var ID = $(this).val();
             var data = { ID: ID };
 
+
             $.post(url, data).done(function (data) {
-                $("#DatoRelacionado").val(data);
+
+                console.log(data[0]);
+
+                $("#lblFecha").html("Fecha Incidencia: " + data[0].FechaIncidencia);
+
             }
             );
         });

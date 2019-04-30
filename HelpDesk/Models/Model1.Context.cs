@@ -37,6 +37,7 @@ namespace HelpDesk.Models
         public DbSet<vPersona> vPersonas { get; set; }
         public DbSet<vPersonaTecnico> vPersonaTecnicoes { get; set; }
         public DbSet<vIncidencias> vIncidencias { get; set; }
+        public DbSet<vIncidencias_Detalle> vIncidencias_Detalle { get; set; }
     
         public virtual int spultimoinicio(string usuario)
         {

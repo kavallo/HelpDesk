@@ -95,6 +95,40 @@ warning 6002: The table/view 'AppHelpDesk.dbo.vIncidencias' does not have a prim
           <Property Name="EstatusSolicitudID" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'AppHelpDesk.dbo.vIncidencias_Detalle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vIncidencias_Detalle">
+          <Key>
+            <PropertyRef Name="SolicitudIncidenciaID" />
+            <PropertyRef Name="DepartamentoID_Solicitud" />
+            <PropertyRef Name="DepartamentoSolicitud" />
+            <PropertyRef Name="PersonaID_Solicitud" />
+            <PropertyRef Name="CodigoPersonaSolicitud" />
+            <PropertyRef Name="NombresPersonaSolicitud" />
+            <PropertyRef Name="ApellidosPersonaSolicitud" />
+            <PropertyRef Name="PersonaID_Tecnico" />
+            <PropertyRef Name="CodigoPersonaTecnica" />
+            <PropertyRef Name="NombresPersonaTecnica" />
+            <PropertyRef Name="ApellidosPersonaTecnica" />
+            <PropertyRef Name="TipoIncidenciaID" />
+            <PropertyRef Name="TipoIncidenciaDescripcion" />
+          </Key>
+          <Property Name="SolicitudIncidenciaID" Type="int" Nullable="false" />
+          <Property Name="FechaIncidencia" Type="varchar" MaxLength="10" />
+          <Property Name="DepartamentoID_Solicitud" Type="int" Nullable="false" />
+          <Property Name="DepartamentoSolicitud" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PersonaID_Solicitud" Type="int" Nullable="false" />
+          <Property Name="CodigoPersonaSolicitud" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="NombresPersonaSolicitud" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApellidosPersonaSolicitud" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PersonaID_Tecnico" Type="int" Nullable="false" />
+          <Property Name="CodigoPersonaTecnica" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="NombresPersonaTecnica" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApellidosPersonaTecnica" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoIncidenciaID" Type="int" Nullable="false" />
+          <Property Name="TipoIncidenciaDescripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ComentariosSolicitud" Type="varchar" MaxLength="5000" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'AppHelpDesk.dbo.vPersona' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vPersona">
           <Key>
@@ -271,6 +305,25 @@ warning 6002: The table/view 'AppHelpDesk.dbo.vPersonaTecnico' does not have a p
 [vIncidencias].[Descripcion] AS [Descripcion], 
 [vIncidencias].[EstatusSolicitudID] AS [EstatusSolicitudID]
 FROM [dbo].[vIncidencias] AS [vIncidencias]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vIncidencias_Detalle" EntityType="Self.vIncidencias_Detalle" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vIncidencias_Detalle].[SolicitudIncidenciaID] AS [SolicitudIncidenciaID], 
+[vIncidencias_Detalle].[FechaIncidencia] AS [FechaIncidencia], 
+[vIncidencias_Detalle].[DepartamentoID_Solicitud] AS [DepartamentoID_Solicitud], 
+[vIncidencias_Detalle].[DepartamentoSolicitud] AS [DepartamentoSolicitud], 
+[vIncidencias_Detalle].[PersonaID_Solicitud] AS [PersonaID_Solicitud], 
+[vIncidencias_Detalle].[CodigoPersonaSolicitud] AS [CodigoPersonaSolicitud], 
+[vIncidencias_Detalle].[NombresPersonaSolicitud] AS [NombresPersonaSolicitud], 
+[vIncidencias_Detalle].[ApellidosPersonaSolicitud] AS [ApellidosPersonaSolicitud], 
+[vIncidencias_Detalle].[PersonaID_Tecnico] AS [PersonaID_Tecnico], 
+[vIncidencias_Detalle].[CodigoPersonaTecnica] AS [CodigoPersonaTecnica], 
+[vIncidencias_Detalle].[NombresPersonaTecnica] AS [NombresPersonaTecnica], 
+[vIncidencias_Detalle].[ApellidosPersonaTecnica] AS [ApellidosPersonaTecnica], 
+[vIncidencias_Detalle].[TipoIncidenciaID] AS [TipoIncidenciaID], 
+[vIncidencias_Detalle].[TipoIncidenciaDescripcion] AS [TipoIncidenciaDescripcion], 
+[vIncidencias_Detalle].[ComentariosSolicitud] AS [ComentariosSolicitud]
+FROM [dbo].[vIncidencias_Detalle] AS [vIncidencias_Detalle]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vPersona" EntityType="Self.vPersona" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -530,8 +583,9 @@ FROM [dbo].[vPersonaTecnico] AS [vPersonaTecnico]</DefiningQuery>
             <Parameter Name="SolicitudIncicendiaID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SpUpcerrar1">
-            <Parameter Name="SolicitudIncicendiaID" Mode="In" Type="Int32" />
+          <Parameter Name="SolicitudIncicendiaID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="vIncidencias_Detalle" EntityType="AppHelpDeskModel.vIncidencias_Detalle" />
         </EntityContainer>
         <EntityType Name="SolictudIncidencia">
           <Key>
@@ -673,6 +727,38 @@ FROM [dbo].[vPersonaTecnico] AS [vPersonaTecnico]</DefiningQuery>
           <Property Name="Descripcion" Type="String" MaxLength="221" FixedLength="false" Unicode="false" />
           <Property Name="EstatusSolicitudID" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="vIncidencias_Detalle">
+          <Key>
+            <PropertyRef Name="SolicitudIncidenciaID" />
+            <PropertyRef Name="DepartamentoID_Solicitud" />
+            <PropertyRef Name="DepartamentoSolicitud" />
+            <PropertyRef Name="PersonaID_Solicitud" />
+            <PropertyRef Name="CodigoPersonaSolicitud" />
+            <PropertyRef Name="NombresPersonaSolicitud" />
+            <PropertyRef Name="ApellidosPersonaSolicitud" />
+            <PropertyRef Name="PersonaID_Tecnico" />
+            <PropertyRef Name="CodigoPersonaTecnica" />
+            <PropertyRef Name="NombresPersonaTecnica" />
+            <PropertyRef Name="ApellidosPersonaTecnica" />
+            <PropertyRef Name="TipoIncidenciaID" />
+            <PropertyRef Name="TipoIncidenciaDescripcion" />
+          </Key>
+          <Property Name="SolicitudIncidenciaID" Type="Int32" Nullable="false" />
+          <Property Name="FechaIncidencia" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DepartamentoID_Solicitud" Type="Int32" Nullable="false" />
+          <Property Name="DepartamentoSolicitud" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PersonaID_Solicitud" Type="Int32" Nullable="false" />
+          <Property Name="CodigoPersonaSolicitud" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="NombresPersonaSolicitud" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidosPersonaSolicitud" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PersonaID_Tecnico" Type="Int32" Nullable="false" />
+          <Property Name="CodigoPersonaTecnica" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="NombresPersonaTecnica" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidosPersonaTecnica" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoIncidenciaID" Type="Int32" Nullable="false" />
+          <Property Name="TipoIncidenciaDescripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ComentariosSolicitud" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -793,6 +879,27 @@ FROM [dbo].[vPersonaTecnico] AS [vPersonaTecnico]</DefiningQuery>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SpUpcerrar" FunctionName="AppHelpDeskModel.Store.SpUpcerrar" />
           <FunctionImportMapping FunctionImportName="SpUpcerrar1" FunctionName="AppHelpDeskModel.Store.SpUpcerrar1" />
+          <EntitySetMapping Name="vIncidencias_Detalle">
+            <EntityTypeMapping TypeName="AppHelpDeskModel.vIncidencias_Detalle">
+              <MappingFragment StoreEntitySet="vIncidencias_Detalle">
+                <ScalarProperty Name="ComentariosSolicitud" ColumnName="ComentariosSolicitud" />
+                <ScalarProperty Name="TipoIncidenciaDescripcion" ColumnName="TipoIncidenciaDescripcion" />
+                <ScalarProperty Name="TipoIncidenciaID" ColumnName="TipoIncidenciaID" />
+                <ScalarProperty Name="ApellidosPersonaTecnica" ColumnName="ApellidosPersonaTecnica" />
+                <ScalarProperty Name="NombresPersonaTecnica" ColumnName="NombresPersonaTecnica" />
+                <ScalarProperty Name="CodigoPersonaTecnica" ColumnName="CodigoPersonaTecnica" />
+                <ScalarProperty Name="PersonaID_Tecnico" ColumnName="PersonaID_Tecnico" />
+                <ScalarProperty Name="ApellidosPersonaSolicitud" ColumnName="ApellidosPersonaSolicitud" />
+                <ScalarProperty Name="NombresPersonaSolicitud" ColumnName="NombresPersonaSolicitud" />
+                <ScalarProperty Name="CodigoPersonaSolicitud" ColumnName="CodigoPersonaSolicitud" />
+                <ScalarProperty Name="PersonaID_Solicitud" ColumnName="PersonaID_Solicitud" />
+                <ScalarProperty Name="DepartamentoSolicitud" ColumnName="DepartamentoSolicitud" />
+                <ScalarProperty Name="DepartamentoID_Solicitud" ColumnName="DepartamentoID_Solicitud" />
+                <ScalarProperty Name="FechaIncidencia" ColumnName="FechaIncidencia" />
+                <ScalarProperty Name="SolicitudIncidenciaID" ColumnName="SolicitudIncidenciaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

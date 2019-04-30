@@ -52,7 +52,12 @@ namespace HelpDesk.Controllers
 
             //return Json(db.SolictudIncidencias.ToList().Select(t => t.SolicitudIncidenciaID = ID));
 
-            return Json(db.vIncidencias.Where(t => t.SolicitudIncidenciaID == ID), "SolicitudIncidenciaID" + "Descripcion");
+            var _incidencia = db.vIncidencias_Detalle.Where(t => t.SolicitudIncidenciaID == ID);
+
+            //ViewBag.pp = "asdasdf";
+
+            //return Json(db.vIncidencias.Where(t => t.SolicitudIncidenciaID == ID), "SolicitudIncidenciaID" + "Descripcion");
+            return Json(_incidencia.ToList());
         }
 
 
