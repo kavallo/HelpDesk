@@ -29,5 +29,6 @@ namespace HelpDesk.Models
         public int TipoIncidenciaID { get; set; }
         public string TipoIncidenciaDescripcion { get; set; }
         public string ComentariosSolicitud { get; set; }
+        public string EstatusSolicitud { get; set; }
     }
 }

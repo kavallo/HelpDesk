@@ -7,8 +7,8 @@
 
 <style type="text/css">
     .editor-field textarea {
-        width: 550px;
-        height: 200px;
+        width: 620px;
+        height: 150px;
         max-width: 800px;
         padding: 12px 20px;
         box-sizing: border-box;
@@ -24,68 +24,157 @@
 {
 
     @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-        @*<h4>CierreSolicitud</h4>*@
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.SolicitudIncidenciaID, "Incidencia", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("solicitudIncidenciaID", ViewBag.SolicitudIncidencia as SelectList, "Por Favor Seleccione Una Incidencia", new { @id = "ddlSolicitud" })
-                @Html.ValidationMessageFor(model => model.SolicitudIncidenciaID, "", new { @class = "text-danger" })
+<div class="form-horizontal">
+    @*<h4>CierreSolicitud</h4>*@
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.SolicitudIncidenciaID, "Incidencia", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("solicitudIncidenciaID", ViewBag.SolicitudIncidencia as SelectList, "Por Favor Seleccione Una Incidencia", new { @id = "ddlSolicitud" })
+            @Html.ValidationMessageFor(model => model.SolicitudIncidenciaID, "", new { @class = "text-danger" })
 
-                @Html.Label("")
+            @Html.Label("")
 
-            </div>
         </div>
+    </div>
 
-        <div class="">
-            @*<div class="center-block">
-                    @Html.LabelFor(model => model.DatoRelacionado, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="  editor-field ">
-                        @Html.TextAreaFor(model => model.DatoRelacionado, new { htmlAttributes = new { @class = "form-control" } })
 
-                        @Html.ValidationMessageFor(model => model.DatoRelacionado, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
 
-            <div>
-                <span id="lblFecha">Fecha Solicitud : </span>
+
+    <div class=" row ">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <span id="" class=" control-label col-md-3 h3">Datos de la Solicitud </span>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cerrada, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Cerrada)
-                    @Html.ValidationMessageFor(model => model.Cerrada, "", new { @class = "text-danger" })
+          
+            <div class="form-group ">
+                <div class=" col-md-3 control-label">
+                    <span id="lID">Numero de Solicitud : </span>
+                </div>
+                <div class=" col-md-3 control-label">
+                    <span id="lblFecha">Fecha Solicitud : </span>
+                </div>
+                <div class=" col-md-3 control-label">
+                    <span id="lbEstatus">Estatus Solicitud : </span>
                 </div>
             </div>
+
+            <div class="form-group">
+                <span id="" class=" control-label col-md-3 h3 ">Persona Solicitante </span>
+            </div>
+           
+            <div class="form-group">
+                <div class=" col-md-3 control-label">
+
+                    <span id="lbcodigoSolicita"> Codigo :</span>
+                </div>
+                <div class=" col-md-2 control-label">
+                    <span id="lbNombreSolicita">Nombre : </span>
+                </div>
+                <div class=" col-md-2 control-label">
+                    <span id="lbApellidoSolicita">Apellido : </span>
+                </div>
+                <div class=" col-md-2 control-label">
+                    <span id="lbDepartamento">Departamento : </span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <span id="" class=" control-label col-md-3 h3">Soporte Asignado </span>
+            </div>
+            
+            <div class="form-group">
+                <div class=" col-md-3 control-label">
+                    Codigo :
+                    <span id="lbcodigosopo" class=" control-label "> </span>
+                </div>
+                <div class=" col-md-2 control-label">
+                    Nombre :
+                    <span id="lbNomSoporte"> </span>
+                </div>
+                <div class=" col-md-2 control-label">
+                    Apelllido :
+                    <span id="lbApeSoportea"> </span>
+                </div>
+                <div class=" col-md-2 control-label">
+                    Tipo de Incidencia :
+                    <span id="lbTipoinci"> </span>
+                </div>
+                </div>
+            <div class="form-group">
+                <span id="" class=" control-label col-md-3 h3">Comentarios</span>
+            </div>
+          
+            <div class="form-group">
+                <div class=" col-md-3 control-label">
+
+                    <span id="tttc"></span>
+                </div>
+            </div>
+
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Comentarios, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Comentarios, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Comentarios, "", new { @class = "text-danger" })
+
+    </div>
+
+    @*<div class="form-group">*@
+    @*<div class=" col-md-3 control-label">
+
+            <span id="lbcomen" class=" control-label "> </span>
+        </div>*@
+
+    @*<div class="center-block">
+            @Html.LabelFor(model => model.DatoRelacionado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="  editor-field ">
+                @Html.TextAreaFor(model => model.DatoRelacionado, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(model => model.DatoRelacionado, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @*</div>*@
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cerrada, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-1">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Cerrada)
+                @Html.ValidationMessageFor(model => model.Cerrada, "", new { @class = "text-danger" })
             </div>
         </div>
+        @Html.LabelFor(model => model.FechaCierre, "Fecha de Cierre", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.FechaCierre, new { htmlAttributes = new { @class = "form-control datepicker", autocomplete = "off", } })
+            @Html.ValidationMessageFor(model => model.FechaCierre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Comentarios, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-3 editor-field" >
+            @Html.TextAreaFor(model => model.Comentarios, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Comentarios, "", new { @class = "text-danger" })
+        </div>
 
-        <div class="form-group">
+    </div>
+
+    @*<div class="form-group">
             @Html.LabelFor(model => model.FechaCierre, "Fecha de Cierre", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FechaCierre, new { htmlAttributes = new { @class = "form-control datepicker", autocomplete = "off", } })
                 @Html.ValidationMessageFor(model => model.FechaCierre, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-default" id="btng" />
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-default" id="btng" />
         </div>
     </div>
+</div>
 }
 
 <div>
@@ -105,8 +194,23 @@
             $.post(url, data).done(function (data) {
 
                 console.log(data[0]);
+                //datos del soporte
+                $("#lbcodigosopo").html("" + data[0].CodigoPersonaTecnica);
+                $("#lbNomSoporte").html("" + data[0].NombresPersonaTecnica);
+                $("#lbApeSoportea").html("" + data[0].ApellidosPersonaTecnica);
+                $("#lbTipoinci").html("" + data[0].TipoIncidenciaDescripcion);
 
+                //datos de la solicitud
                 $("#lblFecha").html("Fecha Incidencia: " + data[0].FechaIncidencia);
+                $("#lbEstatus").html("Estatus Solicitud  " + data[0].EstatusSolicitud);
+                $("#lID").html("Numero de Solicitud : " + data[0].SolicitudIncidenciaID);
+                $("#tttc").html( data[0].ComentariosSolicitud);
+                //datos del solicitante
+                $("#lbcodigoSolicita").html("Codigo : " + data[0].CodigoPersonaSolicitud);
+                $("#lbNombreSolicita").html("Nombre : " + data[0].NombresPersonaSolicitud);
+                $("#lbApellidoSolicita").html("Apellido : " + data[0].ApellidosPersonaSolicitud);
+                $("#lbDepartamento").html("Departametno: " + data[0].DepartamentoSolicitud);
+
 
             }
             );
