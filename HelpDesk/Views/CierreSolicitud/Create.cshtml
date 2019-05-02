@@ -16,6 +16,20 @@
         border-radius: 4px;
         resize: none;
     }
+
+    .a-texto {
+        font: bold;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .b-text {
+        font: bold;
+        font-weight: 200;
+        font-size: 16px;
+    }
+
+    .c-
 </style>
 
 <h2>Cerrar Incidencia</h2>
@@ -40,58 +54,64 @@
                   
         <div class=" row ">
             <div class="form-horizontal">
-                <div class="form-group">
+                <div class="form-group ">
                     <span id="" class=" control-label col-md-3 h3">Datos de la Solicitud </span>
                 </div>
 
-                <div class="form-group ">
+                <div class="form-group a-texto">
                     <div class=" col-md-3 control-label">
-                        <span id="lID">Numero de Solicitud : </span>
+                        Numero de Solicitud :
+                        <span id="lID" class="b-text"> </span>
                     </div>
                     <div class=" col-md-3 control-label">
-                        <span id="lblFecha">Fecha Solicitud : </span>
+                        Fecha Solicitud :
+                        <span id="lblFecha" class="b-text"> </span>
                     </div>
                     <div class=" col-md-3 control-label">
-                        <span id="lbEstatus">Estatus Solicitud : </span>
+                        Estatus Solicitud :
+                        <span id="lbEstatus" class="b-text"> </span>
                     </div>
                 </div>
                 <div class="form-group">
                     <span id="" class=" control-label col-md-3 h3 ">Persona Solicitante </span>
                 </div>
-                <div class="form-group">
+                <div class="form-group a-texto">
                     <div class=" col-md-3 control-label">
-
-                        <span id="lbcodigoSolicita"> Codigo :</span>
+                        Codigo :
+                        <span id="lbcodigoSolicita" class="b-text"> </span>
                     </div>
                     <div class=" col-md-2 control-label">
-                        <span id="lbNombreSolicita">Nombre : </span>
+                        Nombre :
+                        <span id="lbNombreSolicita" class="b-text"> </span>
                     </div>
                     <div class=" col-md-2 control-label">
-                        <span id="lbApellidoSolicita">Apellido : </span>
+                        Apellido :
+                        <span id="lbApellidoSolicita" class="b-text"> </span>
                     </div>
                     <div class=" col-md-2 control-label">
-                        <span id="lbDepartamento">Departamento : </span>
+                        Departamento :
+                        <span id="lbDepartamento" class="b-text"> </span>
                     </div>
                 </div>
                 <div class="form-group">
                     <span id="" class=" control-label col-md-3 h3">Soporte Asignado </span>
                 </div>
-                <div class="form-group">
+                <div class="form-group a-texto">
                     <div class=" col-md-3 control-label">
                         Codigo :
-                        <span id="lbcodigosopo" class=" control-label "> </span>
+                        <span id="lbcodigosopo" class="b-text"> </span>
                     </div>
                     <div class=" col-md-2 control-label">
                         Nombre :
-                        <span id="lbNomSoporte"> </span>
+                        <span id="lbNomSoporte" class="b-text"> </span>
                     </div>
                     <div class=" col-md-2 control-label">
                         Apelllido :
-                        <span id="lbApeSoportea"> </span>
+                        <span id="lbApeSoportea" class="b-text"> </span>
                     </div>
                     <div class=" col-md-2 control-label">
                         Tipo de Incidencia :
-                        <span id="lbTipoinci"> </span>
+                        <span id="lbTipoinci" class="b-text"> </span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -181,21 +201,21 @@
 
                 console.log(data[0]);
                 //datos del soporte
-                $("#lbcodigosopo").html("" + data[0].CodigoPersonaTecnica);
-                $("#lbNomSoporte").html("" + data[0].NombresPersonaTecnica);
-                $("#lbApeSoportea").html("" + data[0].ApellidosPersonaTecnica);
-                $("#lbTipoinci").html("" + data[0].TipoIncidenciaDescripcion);
+                $("#lbcodigosopo").html( data[0].CodigoPersonaTecnica);
+                $("#lbNomSoporte").html(data[0].NombresPersonaTecnica);
+                $("#lbApeSoportea").html(data[0].ApellidosPersonaTecnica);
+                $("#lbTipoinci").html( data[0].TipoIncidenciaDescripcion);
 
                 //datos de la solicitud
-                $("#lblFecha").html("Fecha Incidencia: " + data[0].FechaIncidencia);
-                $("#lbEstatus").html("Estatus Solicitud  " + data[0].EstatusSolicitud);
-                $("#lID").html("Numero de Solicitud : " + data[0].SolicitudIncidenciaID);
+                $("#lblFecha").html( data[0].FechaIncidencia);
+                $("#lbEstatus").html( data[0].EstatusSolicitud);
+                $("#lID").html( data[0].SolicitudIncidenciaID);
                 $("#tttc").html( data[0].ComentariosSolicitud);
                 //datos del solicitante
-                $("#lbcodigoSolicita").html("Codigo : " + data[0].CodigoPersonaSolicitud);
-                $("#lbNombreSolicita").html("Nombre : " + data[0].NombresPersonaSolicitud);
-                $("#lbApellidoSolicita").html("Apellido : " + data[0].ApellidosPersonaSolicitud);
-                $("#lbDepartamento").html("Departametno: " + data[0].DepartamentoSolicitud);
+                $("#lbcodigoSolicita").html( data[0].CodigoPersonaSolicitud);
+                $("#lbNombreSolicita").html(data[0].NombresPersonaSolicitud);
+                $("#lbApellidoSolicita").html(  data[0].ApellidosPersonaSolicitud);
+                $("#lbDepartamento").html(data[0].DepartamentoSolicitud);
 
 
             }
